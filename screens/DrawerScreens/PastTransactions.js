@@ -21,13 +21,7 @@ const { width, height } = Dimensions.get("window");
 
 export default class PastTransactions extends React.Component {
   static navigationOptions = {
-    drawerIcon: tintColor => (
-      <Icon
-        name="clock-o"
-        type="FontAwesome"
-        style={{ fontSize: 24, color: tintColor }}
-      />
-    )
+    header: null
   };
   constructor() {
     super();
@@ -56,10 +50,10 @@ getUserName = (userUID) =>{
             // console.log("comparing...",childSnapShot.key);
             // console.log("and...",userUID);
             if(childSnapShot.key==userUID){
-     
+
               console.log("found name!!",childSnapShot.val().firstName);
               name= childSnapShot.val().firstName;
-              
+
             }
           // console.log(name);
            return (name);
@@ -67,7 +61,7 @@ getUserName = (userUID) =>{
 });
 }
 
-//function that is called everytime page mounts 
+//function that is called everytime page mounts
 componentDidMount(){
   var uid = firebase.auth().currentUser.uid;
   firebase
@@ -87,19 +81,19 @@ componentDidMount(){
                           date: childSnapShot.val().date,
                           name: childSnapShot.val().name,
                           paying: childSnapShot.val().paying,
-                  
+
                         })
 
     });
     this.forceUpdate();
-  
+
   })
 
 }
 
 keyExtractor = (item,index) =>index.toString()
 renderItem = ({item})=> (
-  <ListItem 
+  <ListItem
   containerStyle= {styles.blueButton}
 
   title={item.name}
@@ -108,7 +102,7 @@ renderItem = ({item})=> (
   subtitleStyle={{color:'white'}}
   rightElement={item.amount}
   rightTitle={() =>this.getUserName(item.charging)}
-  rightTitleStyle={{color:'white'}}
+  rightTitleStyle={{color:'white', width: width/4.6875}}
   chevronColor="white"
   chevron
 
@@ -129,13 +123,18 @@ renderItem = ({item})=> (
           style={styles.imageContainer}
         >
           <View style={styles.overlay} />
+          <Header style={{borderBottomWidth:0,backgroundColor:'transparent', zIndex:100, top: 0, left:0, right:0}}>
+            <Left>
+              <Icon name="bars" type="FontAwesome" style={{color:'white' }} onPress={()=>this.props.navigation.openDrawer()}/>
+            </Left>
+          </Header>
           <View style={styles.mainContainer}>
-              <Text style={{color:'white', fontWeight:'bold'}}> Past transactions</Text>
+              <Text style={{color:'white', fontWeight:'bold', fontSize: width/15, marginBottom: width/37.5}}> Past transactions</Text>
               <ButtonGroup
                 onPress={this.updateIndex}
                 selectedIndex={selectedIndex}
                 buttons={buttons}
-                containerStyle={{ height: 30 }}
+                containerStyle={{ height: width/12.5 }}
               />
                  <View style={styles.infoContainer}>
 
@@ -164,7 +163,7 @@ const styles = StyleSheet.create({
     position:"relative",
     width:width,
     height: height,
-    marginTop:50,
+    marginTop:width/30,
 
   },
   imageContainer: {
@@ -177,21 +176,21 @@ const styles = StyleSheet.create({
   },
   infoContainer: {
     flex: 2,
-    padding: 20,
+    padding: width/18.75,
     justifyContent: "flex-end",
     width:width,
-    marginTop:20,
+    marginTop:width/18.75,
 
 
   },
   blueButton: {
-  	padding:15,
+  	padding:width/25,
   	backgroundColor: '#202646',
-    borderRadius:10,
+    borderRadius:width/37.5,
     borderWidth: 1,
     borderColor: '#35b0d2',
     backgroundColor: '#35b0d2',
-    marginTop:10,
-    marginBottom: 10,
+    marginTop:width/37.5,
+    marginBottom: width/37.5,
   },
 });

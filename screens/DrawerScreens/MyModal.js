@@ -14,7 +14,7 @@ import Modal from "react-native-modal";
 import ButtonComponent from '../../components/ButtonComponent'
 const { width } = Dimensions.get("window");
 
-export default class MyModal extends Component {    
+export default class MyModal extends Component {
     render() {
       return (
           <View>
@@ -40,12 +40,12 @@ export default class MyModal extends Component {
                         <TouchableHighlight
                             style={styles.blueButton}
                             >
-                        <Text style={styles.buttonText}>Pay</Text> 
+                        <Text style={styles.buttonText}>Pay</Text>
                         </TouchableHighlight>
                         <TouchableHighlight
                             style={styles.buttonContainer}
                             onPress={this.props.hideModal}>
-                            <Text style={styles.buttonText}>Close</Text> 
+                            <Text style={styles.buttonText}>Close</Text>
                         </TouchableHighlight>
                     </View>
                 </View>
@@ -58,45 +58,45 @@ export default class MyModal extends Component {
         container: {
             flex: 1,
             justifyContent: 'center',
-            padding: 20,
+            padding: width/18.75,
             backgroundColor: 'transparent',
         },
         innerContainer: {
-            borderRadius: 10,
+            borderRadius: width/37.5,
             alignItems: 'center',
             backgroundColor: '#ecf0f1',
         },
         title: {
             color: '#35b0d2',
-            paddingTop: 10,
-            paddingBottom: 10,
+            paddingTop: width/37.5,
+            paddingBottom: width/37.5,
         },
         nameDescription: {
             color: '#12728d',
             fontWeight: 'bold',
-            paddingTop: 10,
-            paddingBottom: 10,
+            paddingTop: width/37.5,
+            paddingBottom: width/37.5,
         },
         dateDescription: {
             color: '#808080',
-            paddingTop: 10,
-            paddingBottom: 10,
+            paddingTop: width/37.5,
+            paddingBottom: width/37.5,
         },
         amountDescription: {
             color: '#12728d',
-            fontSize: 30,
-            height:40,
-            paddingTop: 10,
-            paddingBottom: 10,
-            marginBottom:25,
+            fontSize: width/37.5,
+            height:width/9.375,
+            paddingTop: width/37.5,
+            paddingBottom: width/37.5,
+            marginBottom:width/15,
         },
         buttonContainer: {
-            paddingVertical: 5,
-            width: 100,
+            paddingVertical: width/75,
+            width: width/3.75,
             backgroundColor: '#2c3e50',
-            borderRadius: 10,
-            marginTop: 20,
-            marginBottom: 20,
+            borderRadius: width/37.5,
+            marginTop: width/18.75,
+            marginBottom: width/18.75,
         },
         buttonText: {
             textAlign: 'center',
@@ -104,13 +104,13 @@ export default class MyModal extends Component {
             fontWeight: '700'
         },
         blueButton: {
-            padding:15,
+            padding:width/25,
             backgroundColor: '#202646',
-          borderRadius:10,
+          borderRadius:width/37.5,
           borderWidth: 1,
           borderColor: '#35b0d2',
           backgroundColor: '#35b0d2',
-          marginTop:10,
-          marginBottom: 10,
+          marginTop:width/37.5,
+          marginBottom: width/37.5,
         },
     });

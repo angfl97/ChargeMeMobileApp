@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import {StyleSheet, TextInput} from 'react-native';
+import {StyleSheet, TextInput, Dimensions} from 'react-native';
 
+const{width} = Dimensions.get('window')
 //text input component that makes the border red if there is an error
 class TextInputComponent extends Component {
 	render() {
@@ -45,12 +46,12 @@ class TextInputComponent extends Component {
 //check the type of the props and if they are required
 TextInputComponent.propTypes = {
   empty: PropTypes.bool.isRequired,
-	style: PropTypes.object,
-  error: PropTypes.string,
   placeholder: PropTypes.string.isRequired,
-	placeholder: PropTypes.string,
   onChangeText: PropTypes.func.isRequired,
   returnKeyType: PropTypes.string.isRequired,
+	placeholder: PropTypes.string,
+	style: PropTypes.object,
+  error: PropTypes.string,
   autoCapitalize: PropTypes.string,
   autoCorrect: PropTypes.bool,
   secureTextEntry: PropTypes.bool,
@@ -77,15 +78,15 @@ TextInputComponent.defaultProps = {
 }
 
 const styles = StyleSheet.create({
-  input: {
-    height:40,
+	input: {
+    height:width/9.375,
     backgroundColor: 'rgba(255,255,255,0.2)',
     color:'#fff',
-    marginBottom: 5,
-    paddingHorizontal:10,
+    marginBottom: width/75,
+    paddingHorizontal:width/37.5,
     borderWidth: 2,
-    borderRadius: 20,
-  }
+    borderRadius: width/18.75,
+  },
 });
 
 export default TextInputComponent;

@@ -1,24 +1,24 @@
 import React from 'react';
 import {createDrawerNavigator} from 'react-navigation';
 import * as firebase from 'firebase';
-import PastTransactions from '../screens/DrawerScreens/PastTransactions';
-import CurrentTransactions from '../screens/DrawerScreens/CurrentTransactions';
+import PastTransactionsStack from './PastTransactionsStack';
+import CurrentTransactionsStack from './CurrentTransactionsStack';
 import BillSplitStackScreen from './BillSplitStackScreen';
-import FriendsList from '../screens/DrawerScreens/FriendsList';
+import FriendsStack from './FriendsStack';
 import SettingsStackScreen from './SettingsStackScreen';
-import Dashboard from '../screens/DrawerScreens/Dashboard';
+import DashboardStack from './DashboardStack';
 import DrawerMenu from "./DrawerMenu";
 
 const AppDrawerNavigator = createDrawerNavigator({
-    Dashboard: {screen: Dashboard},
+    DashboardStack: {screen: DashboardStack},
     BillSplitStackScreen: {screen: BillSplitStackScreen},
-    FriendsList: {screen: FriendsList},
-    PastTransactions: {screen:  PastTransactions},
-    CurrentTransactions: {screen: CurrentTransactions},
+    FriendsStack: {screen: FriendsStack},
+    PastTransactionsStack: {screen:  PastTransactionsStack},
+    CurrentTransactionsStack: {screen: CurrentTransactionsStack},
     SettingsStackScreen: {screen: SettingsStackScreen},
   },
   {
-    initialRouteName: 'Dashboard',
+    initialRouteName: 'DashboardStack',
     contentComponent: DrawerMenu,
     contentOptions: {
     activeTintColor: '#35b0d2'

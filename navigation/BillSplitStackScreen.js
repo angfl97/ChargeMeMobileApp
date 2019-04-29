@@ -10,7 +10,6 @@ import SplitByCustomAmount from '../screens/DrawerScreens/BillSplit/SplitByCusto
 import SplitByCustomAmountReview from '../screens/DrawerScreens/BillSplit/SplitByCustomAmountReview';
 import SplitEvenly from '../screens/DrawerScreens/BillSplit/SplitEvenly';
 import SplitEvenlyReview from '../screens/DrawerScreens/BillSplit/SplitEvenlyReview';
-import SelectFriend from '../screens/DrawerScreens/BillSplit/SelectFriend';
 import ReceiptScanner from '../screens/DrawerScreens/BillSplit/ReceiptScanner';
 
 const BillSplitStack = createStackNavigator({
@@ -25,7 +24,6 @@ const BillSplitStack = createStackNavigator({
     SplitByCustomAmountReview: { screen: SplitByCustomAmountReview},
     SplitEvenly: { screen: SplitEvenly},
     SplitEvenlyReview: { screen: SplitEvenlyReview},
-    SelectFriend: {screen:SelectFriend},
     ReceiptScanner: {screen:ReceiptScanner},
   },
   {

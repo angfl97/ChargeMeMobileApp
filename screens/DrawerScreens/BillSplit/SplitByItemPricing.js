@@ -285,8 +285,8 @@ export default class SplitByItem extends React.Component {
         <ImageBackground source={require('../../../assets/group-dinner.jpg')} style={styles.imageContainer}>
         <View style={styles.overlay} />
 
-          <View style={{ width: width, padding:20, paddingBottom: 0}}>
-          <View style = {{flexDirection: 'row', alignItems: 'center',justifyContent: 'space-between', marginLeft: (width-(width/1.5))/2 - 20,width: width/1.5,}}>
+          <View style={{ width: width, padding:width/18.75, paddingBottom: 0}}>
+          <View style = {{flexDirection: 'row', alignItems: 'center',justifyContent: 'space-between', marginLeft: (width-(width/1.5))/2 - (width/18.75),width: width/1.5,}}>
 
             <TouchableOpacity style = {styles.progressButton}
               disabled = {true}
@@ -320,10 +320,10 @@ export default class SplitByItem extends React.Component {
           </View>
 
           <View style = {{flexDirection: 'row', alignItems: 'center',marginLeft: width/10,width: width/1.2,}}>
-            <Text style={{marginLeft: width/30, marginRight: width/11, color: 'rgba(225,225,225,0.2)', fontSize: 15}}>Info</Text>
-            <Text style={{marginRight: width/16, color: 'rgba(225,225,225,0.2)', fontSize: 15}}>Assign</Text>
-            <Text style={{marginRight: width/15, color: 'white', fontSize: 15}}>Tip/Tax</Text>
-            <Text style={{color: 'rgba(225,225,225,0.2)', fontSize: 15}}>Review</Text>
+            <Text style={{marginLeft: width/30, marginRight: width/11, color: 'rgba(225,225,225,0.2)', fontSize: width/25}}>Info</Text>
+            <Text style={{marginRight: width/16, color: 'rgba(225,225,225,0.2)', fontSize: width/25}}>Assign</Text>
+            <Text style={{marginRight: width/15, color: 'white', fontSize: width/25}}>Tip/Tax</Text>
+            <Text style={{color: 'rgba(225,225,225,0.2)', fontSize: width/25}}>Review</Text>
           </View>
 
           </View>
@@ -332,7 +332,7 @@ export default class SplitByItem extends React.Component {
             <View style={styles.infoContainer}>
 
 
-          <Text style={[styles.inputTitle,{marginTop: 10}]}>Total Tax</Text>
+          <Text style={[styles.inputTitle,{marginTop: width/37.5}]}>Total Tax</Text>
 
           <TextInputMask
             type={'money'}
@@ -454,7 +454,7 @@ export default class SplitByItem extends React.Component {
 
 
 
-            <View style={{marginTop: 20, width: width-40}}>
+            <View style={{marginTop: width/18.75, width: width-(width/9.375)}}>
               <ButtonComponent
                 text='NEXT'
                 onPress={() => this.onSubmitBillSplit()}
@@ -482,7 +482,7 @@ const styles = StyleSheet.create({
     flex:8,
   },
   flatListContainer:{
-    height: 100,
+    height: width/3.75,
   },
   friendsContainer: {
     flex:1,
@@ -493,16 +493,16 @@ const styles = StyleSheet.create({
     alignContent: 'center',
     justifyContent: 'space-between',
     width: width/1.15,
-    height: 40,
+    height: width/9.375,
     borderColor: 'transparent',
     backgroundColor: 'rgba(255,255,255, 1)',
     borderWidth: 1,
-    borderRadius: 5,
+    borderRadius: width/75,
     flexDirection: 'row',
-    marginBottom: 5,
+    marginBottom: width/75,
   },
   checkBoxContainer: {
-      height: 150,
+      height: width/2.5,
     justifyContent:'space-between',
   },
   customCheckBoxContainer: {
@@ -511,8 +511,8 @@ const styles = StyleSheet.create({
     justifyContent:'space-around',
   },
   circleContainer:{
-    height: 26,
-    width:26,
+    height: width/14.42,
+    width:width/14.42,
   },
   optionContainer:{
     flexDirection:'row',
@@ -529,58 +529,58 @@ const styles = StyleSheet.create({
   infoContainer: {
     flex: 2,
     width: width,
-    padding:20,
+    padding:width/18.75,
   },
   receiptScannerContainer: {
-    marginTop: 20,
+    marginTop: width/18.75,
     width: width/2.5,
-    height: 35,
+    height: width/10.71,
     flex: 1,
     justifyContent: 'flex-end'
   },
   itemContainer: {
     flexDirection: 'row',
-    height: 40,
+    height: width/9.375,
   },
   input: {
-    height:40,
+    height:width/9.375,
     backgroundColor: 'rgba(255,255,255,1)',
     color:'rgba(0,0,0,0.5)',
-    marginBottom: 5,
-    paddingHorizontal:10,
+    marginBottom: width/75,
+    paddingHorizontal:width/37.5,
     borderWidth: 2,
-    borderRadius: 20,
+    borderRadius: width/18.75,
   },
   customContainer: {
     width: width / 4,
   },
   inputTitle: {
     color: 'white',
-    fontSize: 20,
+    fontSize: width/18.75,
     fontWeight: 'bold',
-    marginBottom: 5,
-    marginTop: 20,
+    marginBottom: width/75,
+    marginTop: width/18.75,
     textAlign: 'left',
   },
   tipText:{
     color: 'white',
-    fontSize: 15,
+    fontSize: width/25,
     opacity: 0.8,
   },
   btntext: {
     color: 'white',
-    fontSize: 18,
+    fontSize: width/20.83,
   },
   redbtntext: {
     color: 'white',
-    fontSize: 13,
+    fontSize: width/28.8,
     textAlign: 'center'
   },
   redButton: {
-    padding: 8,
+    padding: width/46.88,
     flex: 1,
   	backgroundColor: '#202646',
-    borderRadius:10,
+    borderRadius:width/37.5,
     borderWidth: 1,
     borderColor: 'coral',
     backgroundColor: 'coral',
@@ -588,9 +588,9 @@ const styles = StyleSheet.create({
   progressButton: {
     margin: 0,
     justifyContent: 'center',
-    width: 40,
-    height: 40,
-    borderRadius: 100,
+    width: width/9.375,
+    height: width/9.375,
+    borderRadius: width/3.75,
     backgroundColor: '#35b0d2',
   },
   line: {
@@ -601,6 +601,6 @@ const styles = StyleSheet.create({
   stepLabel: {
     color: 'white',
     textAlign: 'center',
-    fontSize: 16
+    fontSize: width/23.44
   }
 });

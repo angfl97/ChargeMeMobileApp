@@ -383,10 +383,14 @@ export default class CreateAccount extends React.Component {
 
                       <View style={styles.nameContainer}>
                       <View style={styles.nameInputContainer}>
-                        <TextInputComponent
-                          empty = {firstNameError}
-                          error = {firstnameErrorMessage}
+                        <TextInput
+                          style={[styles.input,{
+                            borderColor: firstNameError == true || firstnameErrorMessage != ''
+                              ? 'red'
+                              : '#35b0d2',
+                          }]}
                           placeholder="First Name"
+                          placeholderTextColor="rgba(255,255,255,0.8)"
                           ref = "firstName"
                           autoCorrect= {false}
                           returnKeyType='next'
@@ -396,10 +400,14 @@ export default class CreateAccount extends React.Component {
                         </View>
                         <Text/>
                         <View style={styles.nameInputContainer}>
-                        <TextInputComponent
-                          empty = {lastNameError}
-                          error = {lastnameErrorMessage}
+                        <TextInput
+                          style={[styles.input,{
+                            borderColor: lastNameError == true || lastnameErrorMessage != ''
+                              ? 'red'
+                              : '#35b0d2',
+                          }]}
                           placeholder="Last Name"
+                          placeholderTextColor="rgba(255,255,255,0.8)"
                           ref = "lastName"
                           autoCorrect= {false}
                           returnKeyType='next'
@@ -454,10 +462,14 @@ export default class CreateAccount extends React.Component {
                       />
                       <Text style = {styles.errorMessage}>{birthdayErrorMessage}</Text>
 
-                      <TextInputComponent
-                        empty = {usernameError}
-                        error = {usernameErrorMessage}
+                      <TextInput
+                        style={[styles.input,{
+                          borderColor: usernameError == true || usernameErrorMessage != ''
+                            ? 'red'
+                            : '#35b0d2',
+                        }]}
                         placeholder="Username"
+                        placeholderTextColor="rgba(255,255,255,0.8)"
                         ref = "username"
                         autoCorrect= {false}
                         autoCapitalize = 'none'
@@ -467,10 +479,14 @@ export default class CreateAccount extends React.Component {
                       />
                       <Text style = {styles.errorMessage}>{usernameErrorMessage}</Text>
 
-                      <TextInputComponent
-                        empty = {emailError}
-                        error = {emailErrorMessage}
+                      <TextInput
+                        style={[styles.input,{
+                          borderColor: emailError == true || emailErrorMessage != ''
+                            ? 'red'
+                            : '#35b0d2',
+                        }]}
                         placeholder="Email"
+                        placeholderTextColor="rgba(255,255,255,0.8)"
                         ref = "email"
                         autoCorrect= {false}
                         autoCapitalize = 'none'
@@ -480,10 +496,14 @@ export default class CreateAccount extends React.Component {
                       />
                       <Text style = {styles.errorMessage}>{emailErrorMessage}</Text>
 
-                      <TextInputComponent
-                        empty = {passwordError}
-                        error = {passwordErrorMessage}
+                      <TextInput
+                        style={[styles.input,{
+                          borderColor: passwordError == true || passwordErrorMessage != ''
+                            ? 'red'
+                            : '#35b0d2',
+                        }]}
                         placeholder="Password"
+                        placeholderTextColor="rgba(255,255,255,0.8)"
                         ref = "password"
                         autoCorrect= {false}
                         secureTextEntry
@@ -524,8 +544,8 @@ const styles = StyleSheet.create({
   },
   errorMessage:{
     color: 'red',
-    marginBottom: 5,
-    fontSize: 15,
+    marginBottom: width/75,
+    fontSize: width/25,
   },
   inputBoxContainer:{
     flex:8,
@@ -534,7 +554,6 @@ const styles = StyleSheet.create({
   signUpContainer: {
     flex:1,
     alignItems: 'center',
-    justifyContent: 'flex-start',
   },
   header:{
     position:'absolute',
@@ -555,50 +574,50 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     flex: 1,
-    margin: 20,
+    margin: width/18.75,
   },
   infoContainer: {
     flex: 4,
     width: width,
-    padding:20,
+    padding:width/18.75,
   },
   nameContainer:{
-    height: 64,
+    height: width/5.859,
     flexDirection: 'row',
     justifyContent: 'space-between',
   },
   nameInputContainer: {
-    height:40,
+    height:width/12.5,
     width: width/2.3,
   },
   input: {
-    height:40,
+    height:width/9.375,
     backgroundColor: 'rgba(255,255,255,0.2)',
     color:'#fff',
-    marginBottom: 5,
-    paddingHorizontal:10,
+    marginBottom: width/75,
+    paddingHorizontal:width/37.5,
     borderWidth: 2,
-    borderRadius: 20,
+    borderRadius: width/18.75,
   },
   title:{
     color: '#fff',
-    fontSize: 15,
+    fontSize: width/25,
     textAlign:'center',
-    marginTop: 20,
+    marginTop: width/18.75,
   },
   inputTitle: {
     color: "rgba(255,255,255,0.8)",
-    fontSize: 16,
-    marginBottom: 5,
-    marginTop: 10,
+    fontSize: width/23.438,
+    marginBottom: width/75,
+    marginTop: width/37.5,
   },
   button: {
-    width: 200,
-    marginTop:10,
-    marginBottom: 10,
-    paddingTop:15,
-    paddingBottom:15,
-    borderRadius:10,
+    width: width/1.875,
+    marginTop:width/37.5,
+    marginBottom: width/37.5,
+    paddingTop:width/25,
+    paddingBottom:width/25,
+    borderRadius:width/37.5,
     borderWidth: 1,
     borderColor: '#35b0d2',
     backgroundColor: '#35b0d2',
@@ -607,7 +626,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     color: 'rgb(32,53,70)',
     color: 'white',
-    fontSize: 18,
+    fontSize: width/20.833,
   },
   disabled: {
     flex:1,
@@ -619,8 +638,8 @@ const styles = StyleSheet.create({
   },
   pageTitle: {
     color: '#fff',
-    fontSize: 25,
-    marginBottom: 20,
+    fontSize: width/15,
+    marginBottom: width/18.75,
     textAlign: 'center',
   },
 });

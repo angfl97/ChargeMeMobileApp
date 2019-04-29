@@ -20,6 +20,7 @@ import CreateAccount from './CreateAccount';
 import AwesomeAlert from 'react-native-awesome-alerts';
 import { StackActions, NavigationActions } from 'react-navigation';
 import TextInputComponent from '../../components/TextInputComponent.js'
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 
 console.log('login page')
 
@@ -155,8 +156,7 @@ export default class Login extends React.Component {
       <SafeAreaView style={styles.container}>
             <ImageBackground source={require('../../assets/coin.jpg')} style={styles.imageContainer}>
               <View style={styles.overlay} />
-              <StatusBar barStyle="light-content" />
-              <TouchableWithoutFeedback style={styles.container} onPress={Keyboard.dismiss}>
+              <KeyboardAwareScrollView contentContainerStyle = {{flex: 1}}>
                 <View style={styles.container}>
 
                   <View style={styles.logoContainer}>
@@ -170,25 +170,38 @@ export default class Login extends React.Component {
 
                     <View style={styles.inputBoxContainer}>
 
-                      <TextInputComponent
-                          placeholder="Enter email"
-                          onChangeText={(email) => this.updateEmail(email)}
-                          keyboardType='email-address'
-                          returnKeyType='next'
-                          autoCorrect={false}
-                          autoCapitalize = 'none'
-                          onSubmitEditing={()=> this.refs.txtPassword.focus()}
+                      <TextInput
+                        placeholder="Enter email"
+                        placeholderTextColor="rgba(255,255,255,0.8)"
+                        style={[styles.input,{
+                          borderColor: emailEmpty == true
+                            ? 'red'
+                            : '#35b0d2',
+                        }]}
+                        onChangeText={(email) => this.updateEmail(email)}
+                        returnKeyType='next'
+                        autoCorrect= {false}
+                        autoCapitalize = 'none'
+                        onSubmitEditing={()=> this.refs.txtPassword.focus()}
                       />
 
-                      <TextInputComponent
+                      <View style={{marginTop: width/37.5}}>
+                        <TextInput
                           placeholder="Enter password"
-                          keyboardType='default'
+                          placeholderTextColor="rgba(255,255,255,0.8)"
+                          style={[styles.input,{
+                            borderColor: passwordEmpty == true
+                              ? 'red'
+                              : '#35b0d2',
+                          }]}
                           returnKeyType='go'
                           onChangeText={(password) => this.updatePassword(password)}
-                          secureTextEntry
-                          autoCorrect={false}
+                          secureTextEntry = {true}
+                          autoCorrect= {false}
+                          autoCapitalize = 'none'
                           ref={"txtPassword"}
-                      />
+                        />
+                      </View>
                       <Text style={styles.errorMessage}>{this.state.error}</Text>
                     </View>
 
@@ -204,8 +217,7 @@ export default class Login extends React.Component {
                   closeOnHardwareBackPress={false}
                 />
                 </View>
-
-              </TouchableWithoutFeedback>
+                </KeyboardAwareScrollView>
             </ImageBackground>
           </SafeAreaView>
 
@@ -223,9 +235,9 @@ const styles = StyleSheet.create({
   },
   errorMessage:{
     color: 'red',
-    marginBottom: 5,
+    marginBottom: width/75,
     textAlign: 'center',
-    fontSize: 15,
+    fontSize: width/25,
   },
   inputBoxContainer:{
     flex:1,
@@ -261,50 +273,50 @@ const styles = StyleSheet.create({
   infoContainer: {
     flex: 1,
     width: width,
-    padding:20,
+    padding:width/18.75,
   },
   nameContainer:{
-    height: 64,
+    height: width/5.859,
     flexDirection: 'row',
     justifyContent: 'space-between',
   },
   input: {
-    height:40,
+    height:width/9.375,
     backgroundColor: 'rgba(255,255,255,0.2)',
     color:'#fff',
-    marginBottom: 20,
-    paddingHorizontal:10,
+    marginBottom: width/18.75,
+    paddingHorizontal:width/37.5,
     borderWidth: 2,
-    borderRadius: 20,
+    borderRadius: width/18.75,
   },
   nameInput: {
-    height:40,
+    height:width/9.375,
     backgroundColor: 'rgba(255,255,255,0.2)',
     color:'#fff',
     width: width/2.3,
-    marginBottom: 5,
-    paddingHorizontal:10,
+    marginBottom: width/75,
+    paddingHorizontal:width/37.5,
     borderWidth: 2,
-    borderRadius: 20,
+    borderRadius: width/18.75,
   },
   title:{
     color: '#fff',
-    fontSize: 15,
+    fontSize: width/25,
     textAlign:'center',
   },
   inputTitle: {
     color: "rgba(255,255,255,0.8)",
-    fontSize: 16,
-    marginBottom: 5,
-    marginTop: 10,
+    fontSize: width/23.438,
+    marginBottom: width/75,
+    marginTop: width/37.5,
   },
   button: {
-    width: 200,
-    marginTop:10,
-    marginBottom: 10,
-    paddingTop:15,
-    paddingBottom:15,
-    borderRadius:10,
+    width: width/1.875,
+    marginTop:width/37.5,
+    marginBottom: width/37.5,
+    paddingTop:width/25,
+    paddingBottom:width/25,
+    borderRadius:width/37.5,
     borderWidth: 1,
     borderColor: '#35b0d2',
     backgroundColor: '#35b0d2',
@@ -313,7 +325,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     color: 'rgb(32,53,70)',
     color: 'white',
-    fontSize: 18,
+    fontSize: width/20.833,
   },
   disabled: {
     flex:1,
@@ -325,8 +337,17 @@ const styles = StyleSheet.create({
   },
   pageTitle: {
     color: '#fff',
-    fontSize: 25,
-    marginBottom: 20,
+    fontSize: width/15,
+    marginBottom: width/18.75,
     textAlign: 'center',
+  },
+  input: {
+    height:width/9.375,
+    backgroundColor: 'rgba(255,255,255,0.2)',
+    color:'#fff',
+    marginBottom: width/75,
+    paddingHorizontal:width/37.5,
+    borderWidth: 2,
+    borderRadius: width/18.75,
   },
 });

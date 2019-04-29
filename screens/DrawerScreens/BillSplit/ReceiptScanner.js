@@ -25,7 +25,7 @@ export default class ReceiptScanner extends React.Component {
       <Icon
         name="camera"
         type="FontAwesome"
-        style={{ fontSize: 24, color: tintColor }}
+        style={{ fontSize: width/15.625, color: tintColor }}
       />
     )
   };
@@ -50,7 +50,7 @@ export default class ReceiptScanner extends React.Component {
       console.log(data);
       this.setState({
         path: data.uri,
-        data: data, 
+        data: data,
         imageProperties: {height: data.height, width: data.width},
       });
     }
@@ -94,7 +94,7 @@ export default class ReceiptScanner extends React.Component {
     );
   }
 
-  
+
   renderCamera() {
     const { hasCameraPermission } = this.state;
     if (hasCameraPermission === null) {
@@ -122,10 +122,10 @@ export default class ReceiptScanner extends React.Component {
               <View
                 style={{
                   position: "absolute",
-                  top: -width / 2 + 30,
-                  left: -width / 2 + 75,
-                  right: -width / 2 + 75,
-                  bottom: -width / 2 + 100,
+                  top: -width / 2 + (width/12.5),
+                  left: -width / 2 + (width/5),
+                  right: -width / 2 + (width/5),
+                  bottom: -width / 2 + (width/37.5),
 
                   borderWidth: width / 2,
                   borderColor: "rgb(32,53,70)",
@@ -141,7 +141,7 @@ export default class ReceiptScanner extends React.Component {
                 onPress={this.press.bind(this)}
               >
                 <Image
-                  style={{ width: 60, height: 60, marginBottom: 10 }}
+                  style={{ width: width/6.25, height: width/6.25, marginBottom: width/37.5 }}
                   source={require("../../../assets/capture.png")}
                 />
               </TouchableOpacity>
@@ -178,19 +178,19 @@ const styles = StyleSheet.create({
   capture: {
     flex: 0,
     backgroundColor: "#fff",
-    borderRadius: 5,
+    borderRadius: width/75,
     color: "#000",
-    padding: 10,
-    margin: 40
+    padding: width/37.5,
+    margin: width/9.375
   },
   cancel: {
     position: "absolute",
-    left: 5,
-    top: 5,
+    left: width/75,
+    top: width/75,
     backgroundColor: "transparent",
     color: "#FFF",
     fontWeight: "600",
-    fontSize: 17
+    fontSize: width/22.0588
   },
   imageContainer: {
     resizeMode: "cover",

@@ -292,9 +292,9 @@ export default class SplitByItem extends React.Component {
       <SafeAreaView style={styles.container}>
         <ImageBackground source={require('../../../assets/group-dinner.jpg')} style={styles.imageContainer}>
         <View style={styles.overlay} />
-          <View style={{ width: width, padding:20, paddingBottom: 0}}>
+          <View style={{ width: width, padding:width/18.75, paddingBottom: 0}}>
 
-            <View style = {{flexDirection: 'row', alignItems: 'center',justifyContent: 'space-between', marginLeft: (width-(width/1.5))/2 - 20,width: width/1.5,}}>
+            <View style = {{flexDirection: 'row', alignItems: 'center',justifyContent: 'space-between', marginLeft: (width-(width/1.5))/2 - (width/18.75),width: width/1.5,}}>
 
               <TouchableOpacity style = {styles.progressButton}
                 disabled = {true}
@@ -328,10 +328,10 @@ export default class SplitByItem extends React.Component {
             </View>
 
             <View style = {{flexDirection: 'row', alignItems: 'center',marginLeft: width/10,width: width/1.2,}}>
-              <Text style={{marginLeft: width/30, marginRight: width/11, color: 'white', fontSize: 15}}>Info</Text>
-              <Text style={{marginRight: width/16, color: 'rgba(225,225,225,0.2)', fontSize: 15}}>Assign</Text>
-              <Text style={{marginRight: width/15, color: 'rgba(225,225,225,0.2)', fontSize: 15}}>Tip/Tax</Text>
-              <Text style={{color: 'rgba(225,225,225,0.2)', fontSize: 15}}>Review</Text>
+              <Text style={{marginLeft: width/30, marginRight: width/11, color: 'white', fontSize: width/25}}>Info</Text>
+              <Text style={{marginRight: width/16, color: 'rgba(225,225,225,0.2)', fontSize: width/25}}>Assign</Text>
+              <Text style={{marginRight: width/15, color: 'rgba(225,225,225,0.2)', fontSize: width/25}}>Tip/Tax</Text>
+              <Text style={{color: 'rgba(225,225,225,0.2)', fontSize: width/25}}>Review</Text>
             </View>
           </View>
 
@@ -340,7 +340,7 @@ export default class SplitByItem extends React.Component {
 
 
             <View style= {{alignContent:'flex-start'}}>
-              <Text style={[styles.inputTitle, {marginTop: 10}]}>Title</Text>
+              <Text style={[styles.inputTitle, {marginTop: width/37.5}]}>Title</Text>
             </View>
 
             <TextInputComponent
@@ -360,20 +360,20 @@ export default class SplitByItem extends React.Component {
                 extraData={this.state}
                 renderItem={({item}) =>
                   <View style={styles.searchboxContainer}>
-                  <Text style={{marginLeft: 25,marginTop: 9,color: 'rgba(0,0,0,0.6)', fontWeight: 'bold',fontSize: 15, textAlign: 'center'}}>{item.name}</Text>
+                  <Text style={{marginLeft: width/15,marginTop: width/41.66,color: 'rgba(0,0,0,0.6)', fontWeight: 'bold',fontSize: width/25, textAlign: 'center'}}>{item.name}</Text>
                   <CheckBox
                     right={true}
                     iconRight
                     iconType='material'
                     containerStyle={{
-                                      paddingTop: 7,
+                                      paddingTop: width/53.57,
                                       backgroundColor: 'transparent',
-                                      height: 40,
+                                      height: width/9.375,
                                       margin: 0,
                                       borderColor: 'transparent'}}
-                    textStyle={{color: 'rgba(0,0,0,0.6)', fontWeight: 'normal', fontSize: 12}}
+                    textStyle={{color: 'rgba(0,0,0,0.6)', fontWeight: 'normal', fontSize: width/31.25}}
                     uncheckedIcon='clear'
-                    size= {22}
+                    size= {width/17}
                     uncheckedColor='coral'
                     checked={false}
                     onIconPress={() => this.removeFriend(eval(JSON.stringify(item.id)))}
@@ -390,29 +390,29 @@ export default class SplitByItem extends React.Component {
               onItemSelect={item => this.addFriend(item)}
 
               textInputStyle={{
-                fontSize: 15,
+                fontSize: width/25,
                 color:'white',
                 textAlign: 'center',
-                height: 40,
-                width: width-40,
+                height: width/9.375,
+                width: width-(width/9.375),
                 borderWidth: 2,
                 borderColor: '#35b0d2',
-                borderRadius: 20,
+                borderRadius: width/18.75,
                 backgroundColor: '#35b0d2',
 
               }}
               itemStyle={{
-                padding: 10,
+                padding: width/37.5,
                 marginTop: 2,
-                marginLeft: 20,
-                marginRight: 20,
+                marginLeft: width/18.75,
+                marginRight: width/18.75,
                 backgroundColor: 'rgba(255,255,255,0.4)',
                 borderColor: 'rgba(255,255,255,0.4)',
                 borderWidth: 1,
-                borderRadius: 5
+                borderRadius: width/75
               }}
-              itemTextStyle={{ color: "white", textAlign: 'center', fontSize: 15,}}
-              itemsContainerStyle={{ maxHeight: 150 }}
+              itemTextStyle={{ color: "white", textAlign: 'center', fontSize: width/25,}}
+              itemsContainerStyle={{ maxHeight: width/2.5 }}
               items={tempArray}
               placeholder="Search friends"
               placeholderTextColor="white"
@@ -431,23 +431,23 @@ export default class SplitByItem extends React.Component {
                 extraData={this.state}
                 renderItem={({item}) =>
                   <View style={styles.searchboxContainer}>
-                    <Text style={{marginLeft: 25,marginTop: 9,color: 'rgba(0,0,0,0.6)', fontWeight: 'bold',fontSize: 15, textAlign: 'center'}}>{item.name}</Text>
+                    <Text style={{marginLeft: width/15,marginTop: width/41.66,color: 'rgba(0,0,0,0.6)', fontWeight: 'bold',fontSize: width/25, textAlign: 'center'}}>{item.name}</Text>
 
                     <View style={{flexDirection: 'row'}}>
-                      <Text style={{marginRight: 5, marginTop: 10,color: 'rgba(0,0,0,0.6)',fontSize: 13, textAlign: 'center'}}>${(item.price).toFixed(2)}</Text>
+                      <Text style={{marginRight: width/75, marginTop: width/37.5,color: 'rgba(0,0,0,0.6)',fontSize: width/28.85, textAlign: 'center'}}>${(item.price).toFixed(2)}</Text>
                       <CheckBox
                         right={true}
                         iconRight
                         iconType='material'
                         containerStyle={{
                                           backgroundColor: 'transparent',
-                                          paddingTop: 7,
-                                          height: 40,
+                                          paddingTop: width/53.57,
+                                          height: width/9.375,
                                           margin: 0,
                                           borderColor: 'transparent'}}
-                        textStyle={{color: 'rgba(0,0,0,0.6)', fontWeight: 'normal', fontSize: 12}}
+                        textStyle={{color: 'rgba(0,0,0,0.6)', fontWeight: 'normal', fontSize: width/31.25}}
                         uncheckedIcon='clear'
-                        size= {22}
+                        size= {width/17}
                         uncheckedColor='coral'
                         checked={false}
                         onIconPress={() => this.removeItem(eval(JSON.stringify(item.id)))}
@@ -461,10 +461,10 @@ export default class SplitByItem extends React.Component {
             </View>
 
             <View style={styles.itemContainer}>
-              <View style={{flexDirection: 'row', backgroundColor: '#35b0d2', borderRadius: 20, height: 40, alignItems: 'center', borderColor: '#35b0d2', borderWidth: 2}}>
-                <View style={{width: width/2.5, marginLeft: 5, marginRight: 5, marginTop: 4}}>
+              <View style={{flexDirection: 'row', backgroundColor: '#35b0d2', borderRadius: width/18.75, height: width/9.375, alignItems: 'center', borderColor: '#35b0d2', borderWidth: 2}}>
+                <View style={{width: width/2.5, marginLeft: width/75, marginRight: width/75, marginTop: width/93.75}}>
                   <TextInput
-                    style={[styles.input,{height: 30, borderRadius: 10, borderWidth: 1, color: 'white',margin: 0, backgroundColor: '#35b0d2',
+                    style={[styles.input,{height: width/12.5, borderRadius: width/37.5, borderWidth: 1, color: 'white',margin: 0, backgroundColor: '#35b0d2',
                       borderColor: itemNameEmpty == true
                         ? 'red'
                         : 'transparent',
@@ -477,7 +477,7 @@ export default class SplitByItem extends React.Component {
                   />
                 </View>
 
-                <View style={{width: width/5, marginTop: 4, marginRight: 5}}>
+                <View style={{width: width/5, marginTop: width/93.75, marginRight: width/75}}>
                   <TextInputMask
                     type={'money'}
                     options={{
@@ -489,7 +489,7 @@ export default class SplitByItem extends React.Component {
                     }}
                     value={this.state.itemPrice}
                     onChangeText={(total) => this.checkItemPrice(total)}
-                    style={[styles.input,{height: 30,width: width/5,  color: 'white',borderWidth: 1,borderRadius: 10, margin: 0, backgroundColor:'#35b0d2',
+                    style={[styles.input,{height: width/12.5,width: width/5,  color: 'white',borderWidth: 1,borderRadius: width/37.5, margin: 0, backgroundColor:'#35b0d2',
                       borderColor: itemPriceEmpty == true
                         ? 'red'
                         : 'transparent',
@@ -502,7 +502,7 @@ export default class SplitByItem extends React.Component {
                   />
                 </View>
 
-                <View style={{backgroundColor: '#35b0d2', borderRadius: 10, height: 30}}>
+                <View style={{backgroundColor: '#35b0d2', borderRadius: width/37.5, height: width/12.5}}>
                   <UIStepper
                     onValueChange={(value) => { this.setState({quantity: value}) }}
                     initialValue={1}
@@ -515,9 +515,9 @@ export default class SplitByItem extends React.Component {
                     borderColor='transparent'
                     borderWidth={2}
                     textColor="white"
-                    fontSize={14}
+                    fontSize={width/26.8}
                     width={width/6}
-                    height= {30}
+                    height= {width/12.5}
                   />
                 </View>
 
@@ -525,9 +525,9 @@ export default class SplitByItem extends React.Component {
 
               <CheckBox
                 center
-                containerStyle={{marginLeft: 2, padding: 0,height: 40}}
+                containerStyle={{marginLeft: 2, padding: 0,height: width/9.375}}
                 iconType='material'
-                size= {30}
+                size= {width/12.5}
                 uncheckedIcon='add-circle'
                 uncheckedColor='#35b0d2'
                 checked={false}
@@ -550,7 +550,7 @@ export default class SplitByItem extends React.Component {
               />
             </View>
 
-            <View style={{marginTop: 60, width: width-40}}>
+            <View style={{marginTop: width/6.25, width: width-(width/9.375)}}>
               <ButtonComponent
                 text='NEXT'
                 onPress={() => this.onSubmitBillSplit()}
@@ -578,23 +578,23 @@ const styles = StyleSheet.create({
     flex:8,
   },
   flatListContainer:{
-    height: 100,
+    height: width/3.75,
   },
   searchboxContainer: {
     flex: 1,
     alignContent: 'center',
     justifyContent: 'space-between',
     width: width/1.15,
-    height: 40,
+    height: width/9.375,
     borderColor: 'transparent',
     backgroundColor: 'rgba(255,255,255, 1)',
     borderWidth: 1,
-    borderRadius: 5,
+    borderRadius: width/75,
     flexDirection: 'row',
-    marginBottom: 5,
+    marginBottom: width/75,
   },
   checkBoxContainer: {
-      height: 150,
+      height: width/2.5,
     justifyContent:'space-between',
   },
   customCheckBoxContainer: {
@@ -603,8 +603,8 @@ const styles = StyleSheet.create({
     justifyContent:'space-around',
   },
   circleContainer:{
-    height: 26,
-    width:26,
+    height: width/14.42,
+    width:width/14.42,
   },
   optionContainer:{
     flexDirection:'row',
@@ -621,58 +621,59 @@ const styles = StyleSheet.create({
   infoContainer: {
     flex: 2,
     width: width,
-    padding:20,
+    padding:width/18.75,
   },
   receiptScannerContainer: {
-    marginTop: 10,
+    marginTop: width/37.5,
     width: width/2.5,
-    height: 35,
+    height: width/10.71,
     flex: 1,
     justifyContent: 'flex-end'
   },
   itemContainer: {
     flexDirection: 'row',
-    height: 40,
+    height: width/9.375,
   },
   input: {
-    height:40,
+    height:width/9.375,
     backgroundColor: 'rgba(255,255,255,1)',
     color:'rgba(0,0,0,0.5)',
-    marginBottom: 5,
-    paddingHorizontal:10,
+    marginBottom: width/75,
+    paddingHorizontal:width/37.5,
     borderWidth: 2,
-    borderRadius: 20,
+    borderRadius: width/18.75,
+    fontSize: width/31.25,
   },
   customContainer: {
     width: width / 4,
   },
   inputTitle: {
     color: 'white',
-    fontSize: 20,
+    fontSize: width/18.75,
     fontWeight: 'bold',
-    marginBottom: 5,
-    marginTop: 20,
+    marginBottom: width/75,
+    marginTop: width/18.75,
     textAlign: 'left',
   },
   tipText:{
     color: 'white',
-    fontSize: 15,
+    fontSize: width/25,
     opacity: 0.8,
   },
   btntext: {
     color: 'white',
-    fontSize: 18,
+    fontSize: width/20.83,
   },
   redbtntext: {
     color: 'white',
-    fontSize: 13,
+    fontSize: width/28.85,
     textAlign: 'center'
   },
   redButton: {
-    padding: 8,
+    padding: width/46.875,
     flex: 1,
   	backgroundColor: '#202646',
-    borderRadius:10,
+    borderRadius:width/3.75,
     borderWidth: 1,
     borderColor: 'coral',
     backgroundColor: 'coral',
@@ -680,9 +681,9 @@ const styles = StyleSheet.create({
   progressButton: {
     margin: 0,
     justifyContent: 'center',
-    width: 40,
-    height: 40,
-    borderRadius: 100,
+    width: width/9.375,
+    height: width/9.375,
+    borderRadius: width/3.75,
     backgroundColor: '#35b0d2',
   },
   line: {
@@ -693,6 +694,6 @@ const styles = StyleSheet.create({
   stepLabel: {
     color: 'white',
     textAlign: 'center',
-    fontSize: 16
+    fontSize: width/23.44
   }
 });

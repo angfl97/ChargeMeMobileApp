@@ -34,14 +34,14 @@ DashboardStatComponent.defaultProps = {
 
 	textStyle: {
     textAlign: 'center',
-    fontSize: 14,
+    fontSize: width/26.786,
     color: 'white'
   },
   secondTextStyle: {
     marginTop: width/50,
     fontWeight: 'bold',
     textAlign: 'center',
-    fontSize: 20,
+    fontSize: width/18.75,
     color: 'white'
   },
   style: {
@@ -55,7 +55,7 @@ DashboardStatComponent.defaultProps = {
 
 const styles = StyleSheet.create({
   textStyle: {
-    fontSize:18,
+    fontSize:width/20.833,
   	color: 'white',
   	textAlign: 'center'
   },

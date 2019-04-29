@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withNavigation } from 'react-navigation';
-import { TouchableOpacity, Text, StyleSheet, View } from 'react-native';
+import { TouchableOpacity, Text, StyleSheet, View, Dimensions } from 'react-native';
+
+const{width} = Dimensions.get('window')
 
 //button component that incorporates making the button dim when it is disabled
 class ButtonComponent extends Component {
@@ -35,23 +37,23 @@ ButtonComponent.propTypes = {
 
 ButtonComponent.defaultProps = {
  blueButton: {
-	 padding:15,
+	 padding:width/25,
 	 backgroundColor: '#202646',
-	 borderRadius:10,
+	 borderRadius:width/37.5,
 	 borderWidth: 1,
 	 borderColor: '#35b0d2',
 	 backgroundColor: '#35b0d2',
  },
 	redButton: {
-		padding:15,
+		padding:width/25,
   	backgroundColor: '#202646',
-    borderRadius:10,
+    borderRadius:width/37.5,
     borderWidth: 1,
     borderColor: 'coral',
     backgroundColor: 'coral',
 	},
 	textStyle: {
-    fontSize:18,
+    fontSize:width/20.833,
   	color: 'white',
   	textAlign: 'center'
   },
@@ -59,20 +61,20 @@ ButtonComponent.defaultProps = {
 
 const styles = StyleSheet.create({
   textStyle: {
-    fontSize:18,
+    fontSize:width/20.833,
   	color: 'white',
   	textAlign: 'center'
   },
   blueButton: {
-  	padding:15,
-    borderRadius:10,
+  	padding:width/25,
+    borderRadius:width/37.5,
     borderWidth: 1,
     borderColor: '#35b0d2',
     backgroundColor: '#35b0d2',
   },
 	redButton: {
-		padding:15,
-    borderRadius:10,
+		padding:width/25,
+    borderRadius:width/37.5,
     borderWidth: 1,
     borderColor: 'coral',
     backgroundColor: 'coral',

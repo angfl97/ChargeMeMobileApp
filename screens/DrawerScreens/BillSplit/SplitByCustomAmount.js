@@ -91,9 +91,9 @@ export default class SplitByCustomAmount extends React.Component{
       <SafeAreaView style={styles.container}>
         <ImageBackground source={require('../../../assets/group-dinner.jpg')} style={styles.imageContainer}>
         <View style={styles.overlay} />
-        <View style={{ width: width/1.2, padding:20, paddingBottom: 0}}>
+        <View style={{ width: width/1.2, padding:width/18.75, paddingBottom: 0}}>
 
-          <View style = {{flexDirection: 'row', alignItems: 'center',justifyContent: 'space-between', marginLeft: (width-(width/2.1))/2 - 20,width: width/2.1,}}>
+          <View style = {{flexDirection: 'row', alignItems: 'center',justifyContent: 'space-between', marginLeft: (width-(width/2.1))/2 - (width/18.75),width: width/2.1,}}>
 
             <TouchableOpacity style = {styles.progressButton}
               disabled = {true}
@@ -120,15 +120,15 @@ export default class SplitByCustomAmount extends React.Component{
           </View>
 
           <View style = {{flexDirection: 'row', alignItems: 'center',marginLeft: width/5.2,width: width/1.2,}}>
-            <Text style={{marginLeft: width/28, marginRight: width/12, color: 'rgba(225,225,225,0.2)', fontSize: 15}}>Info</Text>
-            <Text style={{marginRight: width/17, color: 'white', fontSize: 15}}>Amount</Text>
-            <Text style={{color: 'rgba(225,225,225,0.2)', fontSize: 15}}>Review</Text>
+            <Text style={{marginLeft: width/28, marginRight: width/12, color: 'rgba(225,225,225,0.2)', fontSize: width/25}}>Info</Text>
+            <Text style={{marginRight: width/17, color: 'white', fontSize: width/25}}>Amount</Text>
+            <Text style={{color: 'rgba(225,225,225,0.2)', fontSize: width/25}}>Review</Text>
           </View>
         </View>
-        <KeyboardAwareScrollView keyboardShouldPersistTaps='always' extraScrollHeight={130}>
+        <KeyboardAwareScrollView keyboardShouldPersistTaps='always' extraScrollHeight={width/2.885}>
           <View style={styles.infoContainer}>
 
-          <Text style={[styles.inputTitle, {marginTop: 10}]}>Enter Amounts:</Text>
+          <Text style={[styles.inputTitle, {marginTop: width/37.5}]}>Enter Amounts:</Text>
 
           <FlatList
             data = {friendAmounts}
@@ -136,20 +136,20 @@ export default class SplitByCustomAmount extends React.Component{
             renderItem={({item}) =>
 
               <View style={{
-                            height: 50,
+                            height: width/7.5,
                             flexDirection: 'row',
                             borderColor: 'transparent',
                             justifyContent: 'space-between',
                             backgroundColor: 'rgba(255,255,255, 1)',
                             borderWidth: 2,
-                            borderRadius: 5,
+                            borderRadius: width/75,
                             paddingLeft: width/20,
                             paddingRight: width/20,
-                            marginTop: 5,
-                            marginBottom: 5
+                            marginTop: width/75,
+                            marginBottom: width/75
                           }}>
 
-              <Text style={{marginTop: 13,color: 'rgba(0,0,0,0.6)', fontWeight: 'bold',fontSize: 15}}>{item.friend.firstName} {item.friend.lastName}</Text>
+              <Text style={{marginTop:width/28.8, color: 'rgba(0,0,0,0.6)', fontWeight: 'bold',fontSize: width/25}}>{item.friend.firstName} {item.friend.lastName}</Text>
 
                 <TextInputMask
                   type={'money'}
@@ -181,7 +181,7 @@ export default class SplitByCustomAmount extends React.Component{
             <Text style={styles.errorMessage}>{emptyAmount}</Text>
 
 
-            <View style={{marginTop: 40, width: width-40}}>
+            <View style={{marginTop: width/9.375, width: width-(width/9.375)}}>
               <ButtonComponent
                 text='NEXT'
                 onPress={() => this.onSubmitBillSplit()}
@@ -209,7 +209,7 @@ const styles = StyleSheet.create({
     flex:8,
   },
   flatListContainer:{
-    height: 100,
+    height: width/3.75,
   },
   friendsContainer: {
     flex:1,
@@ -220,16 +220,16 @@ const styles = StyleSheet.create({
     alignContent: 'center',
     justifyContent: 'space-between',
     width: width/1.15,
-    height: 40,
+    height: width/9.375,
     borderColor: '#35b0d2',
     backgroundColor: 'rgba(255,255,255, 1)',
     borderWidth: 1,
-    borderRadius: 5,
+    borderRadius: width/75,
     flexDirection: 'row',
-    marginBottom: 10,
+    marginBottom: width/37.5,
   },
   checkBoxContainer: {
-      height: 150,
+      height: width/2.5,
     justifyContent:'space-between',
   },
   customCheckBoxContainer: {
@@ -238,8 +238,8 @@ const styles = StyleSheet.create({
     justifyContent:'space-around',
   },
   circleContainer:{
-    height: 26,
-    width:26,
+    height: width/14.42,
+    width:width/14.42,
   },
 
   imageContainer: {
@@ -253,39 +253,39 @@ const styles = StyleSheet.create({
   infoContainer: {
     flex: 2,
     width: width,
-    padding:20,
+    padding:width/18.75,
   },
   input: {
-    height:40,
+    height:width/9.375,
     backgroundColor: 'rgba(255,255,255,1)',
     color:'rgba(0,0,0,0.5)',
-    marginBottom: 5,
-    paddingHorizontal:10,
+    marginBottom: width/75,
+    paddingHorizontal:width/37.5,
     borderWidth: 2,
-    borderRadius: 20,
+    borderRadius: width/18.75,
   },
   customContainer: {
     width: width / 4,
   },
   inputTitle: {
     color: 'white',
-    fontSize: 20,
+    fontSize: width/18.75,
     fontWeight: 'bold',
-    marginBottom: 5,
-    marginTop: 20,
+    marginBottom: width/75,
+    marginTop: width/18.75,
     textAlign: 'left',
   },
 
   btntext: {
     color: 'white',
-    fontSize: 18,
+    fontSize: width/20.833,
   },
   progressButton: {
     margin: 0,
     justifyContent: 'center',
-    width: 40,
-    height: 40,
-    borderRadius: 100,
+    width: width/9.375,
+    height: width/9.375,
+    borderRadius: width/3.75,
     backgroundColor: '#35b0d2',
   },
   line: {
@@ -296,6 +296,6 @@ const styles = StyleSheet.create({
   stepLabel: {
     color: 'white',
     textAlign: 'center',
-    fontSize: 16
+    fontSize: width/23.44
   }
 });

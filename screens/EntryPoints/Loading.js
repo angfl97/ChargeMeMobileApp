@@ -77,18 +77,18 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     flex: 1,
-    margin: 20,
+    margin: width/18.75,
   },
   infoContainer: {
     flex: 1,
     width: width,
-    padding:20,
-    padding: 20,
+    padding:width/18.75,
+    padding: width/18.75,
   },
   pageTitle: {
     color: '#fff',
-    fontSize: 25,
-    marginBottom: 20,
+    fontSize: width/15,
+    marginBottom: width/18.75,
     textAlign: 'center',
   },
 });

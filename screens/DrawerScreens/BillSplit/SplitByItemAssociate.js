@@ -177,9 +177,9 @@ export default class SplitByItemAssociate extends React.Component{
         <ImageBackground source={require('../../../assets/group-dinner.jpg')} style={styles.imageContainer}>
           <View style={styles.overlay} />
 
-          <View style={{ width: width, padding:20, paddingBottom: 0}}>
+          <View style={{ width: width, padding:18.75, paddingBottom: 0}}>
 
-          <View style = {{flexDirection: 'row', alignItems: 'center',justifyContent: 'space-between', marginLeft: (width-(width/1.5))/2 - 20,width: width/1.5,}}>
+          <View style = {{flexDirection: 'row', alignItems: 'center',justifyContent: 'space-between', marginLeft: (width-(width/1.5))/2 - (width/18.75),width: width/1.5,}}>
 
             <TouchableOpacity style = {styles.progressButton}
               disabled = {true}
@@ -213,17 +213,17 @@ export default class SplitByItemAssociate extends React.Component{
           </View>
 
           <View style = {{flexDirection: 'row', alignItems: 'center',marginLeft: width/10,width: width/1.2,}}>
-            <Text style={{marginLeft: width/30, marginRight: width/11, color: 'rgba(225,225,225,0.2)', fontSize: 15}}>Info</Text>
-            <Text style={{marginRight: width/16, color: 'white', fontSize: 15}}>Assign</Text>
-            <Text style={{marginRight: width/15, color: 'rgba(225,225,225,0.2)', fontSize: 15}}>Tip/Tax</Text>
-            <Text style={{color: 'rgba(225,225,225,0.2)', fontSize: 15}}>Review</Text>
+            <Text style={{marginLeft: width/30, marginRight: width/11, color: 'rgba(225,225,225,0.2)', fontSize: width/25}}>Info</Text>
+            <Text style={{marginRight: width/16, color: 'white', fontSize: width/25}}>Assign</Text>
+            <Text style={{marginRight: width/15, color: 'rgba(225,225,225,0.2)', fontSize: width/25}}>Tip/Tax</Text>
+            <Text style={{color: 'rgba(225,225,225,0.2)', fontSize: width/25}}>Review</Text>
           </View>
           </View>
 
           <KeyboardAwareScrollView keyboardShouldPersistTaps='always'contentContainerStyle={styles.contentContainer}>
-          <View style={{ width: width, padding:20, paddingBottom: 0}}>
+          <View style={{ width: width, padding:width/18.75, paddingBottom: 0}}>
 
-          <Text style={[styles.inputTitle, {marginTop: 10}]}>Unassigned Items:</Text>
+          <Text style={[styles.inputTitle, {marginTop:width/37.5}]}>Unassigned Items:</Text>
 
 
             <FlatList
@@ -236,34 +236,32 @@ export default class SplitByItemAssociate extends React.Component{
 
                     <View style = {{
                                     flexDirection: 'row',
-                                    height: 40,
+                                    height: width/9.375,
                                     borderColor: 'transparent',
                                     justifyContent: 'space-between',
                                     backgroundColor: 'rgba(255,255,255, 1)',
                                     borderWidth: 2,
-                                    borderRadius: 5,
+                                    borderRadius: width/75,
                                     paddingLeft: width/20,
-                                    marginTop: 5
+                                    marginTop: width/75
                                   }}>
-                      <Text style={{marginTop: 9,color: 'rgba(0,0,0,0.6)', fontWeight: 'bold',fontSize: 15}}>{item.name}</Text>
-                      <Text style={{marginTop: 10, marginRight: 25, color: 'rgba(0,0,0,0.6)',fontSize: 13,}}>${item.price}</Text>
+                      <Text style={{marginTop: width/41.66,color: 'rgba(0,0,0,0.6)', fontWeight: 'bold',fontSize: width/25}}>{item.name}</Text>
+                      <Text style={{marginTop: width/37.5, marginRight: width/15, color: 'rgba(0,0,0,0.6)',fontSize: width/28.85,}}>${item.price}</Text>
                     </View>
                 )}
 
                 rippleInsets={{ top: 0, bottom: 0, left: 0, right: 0 }}
-                containerStyle={{height: 45}}
+                containerStyle={{height: width/8.33}}
                 overlayStyle={{backgroundColor: 'rgba(1,1,1,0.4)'}}
                 dropdownPosition={1}
                 itemColor="rgba(0, 0, 0, .87)"
                 onChangeText = {(value, index, selected) => this.associate(value, index, eval(JSON.stringify(item.id)))}
                 pickerStyle={{
-                  width: 128,
-
+                  width: width/2.93,
                   left: null,
                   right: 0,
-
-                  marginRight: 8,
-                  marginTop: 24
+                  marginRight: width/46.88,
+                  marginTop: width/15.625
                 }}
               />
               }
@@ -275,7 +273,7 @@ export default class SplitByItemAssociate extends React.Component{
           <Text style={styles.inputTitle}>Who's Paying What:</Text>
           </View>
 
-          <View style={{marginLeft: 20, marginRight: 20 }}>
+          <View style={{marginLeft: width/18.75, marginRight:width/18.75 }}>
             <SectionList
               sections={friendItems}
               renderSectionHeader={({ section }) => (
@@ -286,19 +284,19 @@ export default class SplitByItemAssociate extends React.Component{
               renderItem={({ item }) => (
                 <View style= {styles.SectionListItemStyle}>
                   <View>
-                    <Text style={{color: 'rgba(0,0,0,0.6)', fontWeight: 'bold',marginTop: 7 }}>{item.name}</Text>
+                    <Text style={{color: 'rgba(0,0,0,0.6)', fontWeight: 'bold',marginTop: width/53.57 }}>{item.name}</Text>
                   </View>
 
                   <View style={{ flexDirection: 'row',}}>
-                    <Text style={{color: 'rgba(0,0,0,0.6)', marginTop: 7}}>${(item.price).toFixed(2)}</Text>
+                    <Text style={{color: 'rgba(0,0,0,0.6)', marginTop: width/53.57}}>${(item.price).toFixed(2)}</Text>
                     <CheckBox
                       right={true}
                       iconRight
                       iconType='material'
                       containerStyle={{
-                                        paddingTop: 4,
+                                        paddingTop: width/93.75,
                                         paddingBottom: 0,
-                                        height: 30,
+                                        height: width/12.5,
                                         margin: 0
                                       }}
                       uncheckedIcon='clear'
@@ -315,7 +313,7 @@ export default class SplitByItemAssociate extends React.Component{
             <Text style={styles.errorMessage}>{emptyFriend}</Text>
 
 
-          <View style={{marginTop: 40}}>
+          <View style={{marginTop: width/9.375}}>
             <ButtonComponent
               text='NEXT'
               onPress={() => this.onSubmitBillSplit()}
@@ -351,56 +349,56 @@ const styles = StyleSheet.create({
   },
   infoContainer: {
     flex: 1,
-    padding: 20
+    padding: width/18.75
   },
   borderContainer: {
     borderColor: '#35b0d2',
     borderWidth: 2,
-    margin: 20,
+    margin: width/18.75,
   },
   contentContainer: {
     width: width,
   },
   searchboxContainer: {
     flex: 1,
-    paddingLeft: 25,
+    paddingLeft: width/15,
     justifyContent: 'space-between',
-    height: 40,
+    height: width/9.375,
     borderColor: 'transparent',
     backgroundColor: 'rgba(255,255,255, 1)',
     borderWidth: 2,
-    borderRadius: 5,
+    borderRadius: width/75,
     flexDirection: 'row',
-    marginBottom: 5,
+    marginBottom: width/75,
   },
   valueContainer: {
     alignContent: 'center',
     justifyContent: 'center',
-    height: 40,
+    height: width/9.375,
     borderColor: '#35b0d2',
     backgroundColor: 'rgba(255,255,255,0.2)',
     borderWidth: 2,
-    borderRadius: 5,
-    margin: 10,
+    borderRadius: width/75,
+    margin: width/37.5,
     width: width/2.5,
   },
   buttonContainer: {
-    marginLeft: 20,
-    marginRight: 20,
+    marginLeft: width/18.75,
+    marginRight: width/18.75,
   },
   pageTitle: {
     textAlign: 'center',
     color: 'white',
-    fontSize: 24,
+    fontSize: width/15.625,
     fontWeight: 'bold',
-    marginTop: 40,
+    marginTop: width/9.375,
   },
   sectionTitle: {
     textAlign: 'left',
     color: 'white',
-    fontSize: 18,
+    fontSize: width/20.83,
     fontWeight: 'bold',
-    marginBottom: 10,
+    marginBottom: width/37.5,
 
   },
   customView: {
@@ -411,41 +409,41 @@ const styles = StyleSheet.create({
   },
   inputTitle: {
     color: 'white',
-    fontSize: 20,
+    fontSize: width/18.75,
     fontWeight: 'bold',
-    marginBottom: 5,
-    marginTop: 20,
+    marginBottom: width/75,
+    marginTop: width/18.75,
     textAlign: 'left',
   },
   SectionHeaderStyle: {
     backgroundColor:'#35b0d2',
     borderColor: '#35b0d2',
     borderWidth: 2,
-    borderRadius: 5,
-    height: 40,
-    fontSize: 15,
-    padding: 8,
-    marginTop: 5,
+    borderRadius: width/75,
+    height: width/9.375,
+    fontSize: width/25,
+    padding: width/46.88,
+    marginTop: width/75,
   },
   SectionListItemStyle: {
     borderColor:'transparent',
     justifyContent: 'space-between',
     backgroundColor: 'rgba(255,255,255,1)',
     borderWidth: 2,
-    borderRadius: 5,
+    borderRadius: width/75,
     flexDirection: 'row',
-    marginBottom: 5,
+    marginBottom: width/75,
     width: width/1.5,
-    fontSize: 15,
-    paddingLeft: 17,
-    height: 34,
+    fontSize: width/25,
+    paddingLeft: width/22,
+    height: width/11,
   },
   progressButton: {
     margin: 0,
     justifyContent: 'center',
-    width: 40,
-    height: 40,
-    borderRadius: 100,
+    width: width/9.375,
+    height: width/9.375,
+    borderRadius: width/3.75,
     backgroundColor: '#35b0d2',
   },
   line: {
@@ -456,6 +454,6 @@ const styles = StyleSheet.create({
   stepLabel: {
     color: 'white',
     textAlign: 'center',
-    fontSize: 16
+    fontSize: width/23.44
   }
 });

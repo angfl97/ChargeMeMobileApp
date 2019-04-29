@@ -210,7 +210,7 @@ export default class SplitEvenlyReview extends React.Component{
       <Icon
         name='check-circle'
         color= 'green'
-        size= {60}
+        size= {width/6.25}
         onChangeText={text => this.setState({ text })}
       />
     </View>
@@ -222,9 +222,9 @@ export default class SplitEvenlyReview extends React.Component{
       <SafeAreaView style={styles.container}>
         <ImageBackground source={require('../../../assets/group-dinner.jpg')} style={styles.imageContainer}>
           <View style={styles.overlay} />
-          <View style={{ width: width, padding:20, paddingBottom: 0}}>
+          <View style={{ width: width, padding:width/18.75, paddingBottom: 0}}>
 
-          <View style = {{flexDirection: 'row', alignItems: 'center',justifyContent: 'space-between', marginLeft: (width-(width/1.5))/2 - 20,width: width/1.5,}}>
+          <View style = {{flexDirection: 'row', alignItems: 'center',justifyContent: 'space-between', marginLeft: (width-(width/1.5))/2 - (width/18.74),width: width/1.5,}}>
 
             <TouchableOpacity style = {styles.progressButton}
               disabled = {true}
@@ -258,10 +258,10 @@ export default class SplitEvenlyReview extends React.Component{
           </View>
 
           <View style = {{flexDirection: 'row', alignItems: 'center',marginLeft: width/10,width: width/1.2,}}>
-            <Text style={{marginLeft: width/30, marginRight: width/11, color: 'rgba(225,225,225,0.2)', fontSize: 15}}>Info</Text>
-            <Text style={{marginRight: width/16, color: 'rgba(225,225,225,0.2)', fontSize: 15}}>Assign</Text>
-            <Text style={{marginRight: width/15, color: 'rgba(225,225,225,0.2)', fontSize: 15}}>Tip/Tax</Text>
-            <Text style={{color: 'white', fontSize: 15}}>Review</Text>
+            <Text style={{marginLeft: width/30, marginRight: width/11, color: 'rgba(225,225,225,0.2)', fontSize: width/25}}>Info</Text>
+            <Text style={{marginRight: width/16, color: 'rgba(225,225,225,0.2)', fontSize: width/25}}>Assign</Text>
+            <Text style={{marginRight: width/15, color: 'rgba(225,225,225,0.2)', fontSize: width/25}}>Tip/Tax</Text>
+            <Text style={{color: 'white', fontSize: width/25}}>Review</Text>
           </View>
 
         </View>
@@ -276,7 +276,7 @@ export default class SplitEvenlyReview extends React.Component{
 
 
                 <DatePicker
-                    style={{width: width/2.4, marginBottom:10}}
+                    style={{width: width/2.4, height: 12.5, marginBottom:width/37.5}}
                     showIcon = {true }
                     date={this.state.date}
                     mode="date"
@@ -289,19 +289,21 @@ export default class SplitEvenlyReview extends React.Component{
                       dateIcon: {
                         position: 'absolute',
                         left: 0,
-                        top: 4,
+                        top: width/93.75,
                         marginLeft: 0
                       },
                       dateInput: {
                         backgroundColor: "white",
-                        marginLeft: 45,
+                        marginLeft: width/8.33,
                         borderColor: 'rgba(255,255,255,1)',
                         borderWidth: 2,
-                        borderRadius: 5,
+                        borderRadius: width/75,
+                        height: width/12.5
                       },
                       dateText: {
                         color: 'rgba(1,1,1,0.6)',
-                        fontWeight: 'bold'
+                        fontWeight: 'bold',
+                        fontSize: width/28.85
                       }
                       // ... You can check the source to find the other keys.
                     }}
@@ -324,8 +326,8 @@ export default class SplitEvenlyReview extends React.Component{
                   renderItem={({ item }) => (
                     // Single Comes here which will be repeatative for the FlatListItems
                     <View style= {styles.SectionListItemStyle}>
-                      <Text style={{color: 'rgba(0,0,0,0.6)', fontWeight: 'bold', marginTop: 7}}>{item.name} </Text>
-                      <Text style={{color: 'rgba(0,0,0,0.6)', marginTop: 7, marginRight: 10}}> ${(item.price).toFixed(2)}</Text>
+                      <Text style={{color: 'rgba(0,0,0,0.6)', fontWeight: 'bold', marginTop: width/53.57}}>{item.name} </Text>
+                      <Text style={{color: 'rgba(0,0,0,0.6)', marginTop: width/53.57, marginRight: width/37.5}}> ${(item.price).toFixed(2)}</Text>
                     </View>
                   )}
                   keyExtractor={(item, index) => index}
@@ -355,9 +357,9 @@ export default class SplitEvenlyReview extends React.Component{
               showConfirmButton={true}
               confirmButtonStyle={{width: width/7, alignItems: 'center'}}
               cancelText="NO"
-              cancelButtonTextStyle= {{fontWeight: 'bold'}}
+              cancelButtonTextStyle= {{fontWeight: 'bold', fontSize: width/31.25}}
               confirmText="YES"
-              confirmButtonTextStyle= {{fontWeight: 'bold'}}
+              confirmButtonTextStyle= {{fontWeight: 'bold', fontSize: width/31.25}}
               confirmButtonColor='#35b0d2'
               onCancelPressed={() => {
                 this.hideOptionAlert();
@@ -402,56 +404,56 @@ const styles = StyleSheet.create({
   },
   infoContainer: {
     flex: 1,
-    padding: 20
+    padding:width/18.75
   },
   borderContainer: {
     borderColor: '#35b0d2',
     borderWidth: 2,
-    margin: 20,
+    margin: width/18.75,
   },
   contentContainer: {
     width: width,
-    paddingBottom: 20,
+    paddingBottom: width/18.75,
   },
   searchboxContainer: {
     flex: 1,
     alignContent: 'center',
     justifyContent: 'space-between',
-    height: 40,
+    height: width/9.375,
     borderColor: '#35b0d2',
     backgroundColor: 'rgba(255,255,255, 0.8)',
     borderWidth: 2,
-    borderRadius: 5,
+    borderRadius: width/75,
     flexDirection: 'row',
-    marginBottom: 10,
+    marginBottom: width/37.5,
   },
   valueContainer: {
     alignContent: 'center',
     justifyContent: 'center',
-    height: 30,
+    height: width/12.5,
     borderColor: 'rgba(255,255,255,1)',
     backgroundColor: 'rgba(255,255,255,1)',
     borderWidth: 2,
-    borderRadius: 5,
+    borderRadius: width/75,
     width: width/7,
   },
   buttonContainer: {
-    marginLeft: 20,
-    marginRight: 20,
+    marginLeft: width/18.75,
+    marginRight: width/18.75,
   },
   pageTitle: {
     textAlign: 'center',
     color: 'white',
-    fontSize: 24,
+    fontSize: width/15.625,
     fontWeight: 'bold',
-    marginTop: 20,
+    marginTop: width/18.75,
   },
   sectionTitle: {
     textAlign: 'left',
     color: 'white',
-    fontSize: 18,
+    fontSize: width/20.83,
     fontWeight: 'bold',
-    marginBottom: 10,
+    marginBottom: width/37.5,
 
   },
   customView: {
@@ -466,33 +468,33 @@ const styles = StyleSheet.create({
     backgroundColor:'#35b0d2',
     borderColor: '#35b0d2',
     borderWidth: 2,
-    borderRadius: 5,
-    height: 40,
-    fontSize: 15,
-    padding: 8,
+    borderRadius: width/75,
+    height: width/9.375,
+    fontSize: width/25,
+    padding: width/46.875,
     //marginBottom: 5,
   },
   SectionListItemStyle: {
     borderColor: 'transparent',
     backgroundColor: 'rgba(255,255,255,1)',
     borderWidth: 2,
-    borderRadius: 5,
+    borderRadius: width/75,
     justifyContent: 'space-between',
     flexDirection: 'row',
     //marginLeft: width/18,
-    marginBottom: 5,
+    marginBottom: width/75,
     width: width/1.6,
-    fontSize: 15,
-    paddingLeft: 17,
-    height: 34,
+    fontSize: width/25,
+    paddingLeft: width/22,
+    height: width/11,
     color: '#35b0d2',
   },
   progressButton: {
     margin: 0,
     justifyContent: 'center',
-    width: 40,
-    height: 40,
-    borderRadius: 100,
+    width: width/9.325,
+    height: width/9.325,
+    borderRadius: width/3.75,
     backgroundColor: '#35b0d2',
   },
   line: {
@@ -503,10 +505,10 @@ const styles = StyleSheet.create({
   stepLabel: {
     color: 'white',
     textAlign: 'center',
-    fontSize: 16
+    fontSize: width/23.44
   },
   errorMessage:{
     color: 'red',
-    marginBottom: 5
+    marginBottom: width/75
   },
 });

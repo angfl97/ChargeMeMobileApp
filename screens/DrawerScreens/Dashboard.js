@@ -26,11 +26,13 @@ import DashboardStatComponent from '../../components/DashboardStatComponent'
 
 
 const {width} = Dimensions.get('window')
+console.log("width: ", width)
+
 
 let activity=''
 
 export default class Dashboard extends React.Component {
-
+  static navigationOptions = {header: null}
   constructor(props) {
     super(props)
     this.state = {
@@ -143,9 +145,9 @@ export default class Dashboard extends React.Component {
       titleStyle={{color:'white', fontWeight:'bold'}}
       subtitle={item.date }
       subtitleStyle={{color:'white'}}
-      rightElement={"$" + (item.amount).toFixed(2)}
-      rightTitle={"Paying "+name}
-      rightTitleStyle={{color:'white', width: 70}}
+      rightElement={<Text style = {{color: 'white'}}> $ {(item.amount).toFixed(2)}</Text>}
+      rightTitle={<Text style = {{fontSize: width/24,color:'white'}}>Paying{"\n"}{name}</Text>}
+      rightTitleStyle={{ width: width/4.6875}}
 
 
       />;  }
@@ -162,9 +164,9 @@ export default class Dashboard extends React.Component {
       titleStyle={{color:'white', fontWeight:'bold'}}
       subtitle={item.date }
       subtitleStyle={{color:'white'}}
-      rightElement={"$" + (item.amount).toFixed(2)}
-      rightTitle={"Charging "+name}
-      rightTitleStyle={{color:'white', width: 70}}
+      rightElement={<Text style = {{color: 'white'}}> $ {(item.amount).toFixed(2)}</Text>}
+      rightTitle={<Text style = {{fontSize: width/24,color:'white'}}>Charging{"\n"}{name}</Text>}
+      rightTitleStyle={{width: width/4.6875}}
 
       />
     }
@@ -191,16 +193,16 @@ export default class Dashboard extends React.Component {
         </Header>
       <View style={styles.container}>
 
-   
+
 
           <View style={{flex:1, alignItems: 'center', justifyContent: 'center'}}>
-            <KeyboardAwareScrollView keyboardShouldPersistTaps='always' extraScrollHeight={130}>
+            <KeyboardAwareScrollView keyboardShouldPersistTaps='always' extraScrollHeight={width/2.885}>
 
             <View style={styles.userContainer}>
               <Avatar
                 size = "xlarge"
                 rounded title = {this.state.initials}
-                containerStyle={{marginLeft: 10, marginTop: 10}}
+                containerStyle={{marginLeft: width/37.5, marginTop:width/37.5}}
               />
 
               <View style={styles.nameContainer}>
@@ -239,7 +241,7 @@ export default class Dashboard extends React.Component {
 
             <View style={styles.infoContainer}>
               <Text style={styles.text}>Your Recent Activity:</Text>
-              <Text style ={{marginTop: 15, color:'white', textAlign: 'center', fontSize: 18}}>{activity}</Text>
+              <Text style ={{marginTop: width/25, color:'white', textAlign: 'center', fontSize: width/20.833}}>{activity}</Text>
               <FlatList style={{flex:1}}
                 keyExtractor={this.keyExtractor}
                 data={currentTransactions}
@@ -264,69 +266,69 @@ container:{
 nameContainer:{
   flex: 1,
   alignItems: 'center',
-  paddingBottom: 20,
+  paddingBottom: width/18.75,
 },
 listItemContainer:{
   backgroundColor: '#fff',
-  margin: 5,
-  borderRadius: 5,
+  margin: width/75,
+  borderRadius: width/75,
 },
 listItem:{
-  fontSize:20,
-  padding: 10,
+  fontSize:width/18.75,
+  padding: width/37.5,
 },
 name:{
-  fontSize: 40,
+  fontSize: width/9.375,
   color: "white",
   textAlign: 'center',
 },
 username:{
-  fontSize: 20,
+  fontSize: width/18.75,
   color: "white",
   textAlign: 'center',
 },
 text:{
-  fontSize: 25,
+  fontSize: width/15,
   color: "white",
 },
 userContainer:{
   flex: 1,
   flexDirection: 'row',
-  padding: 10,
+  padding: width/37.5,
   alignItems: 'flex-end',
   justifyContent: 'space-evenly',
 },
 infoContainer:{
   flex: 2,
-  padding: 20,
+  padding: width/18.75,
   justifyContent: "flex-end",
   width:width,
 },
 button:{
-  height: 100,
-  width: 100,
-  borderRadius: 50,
+  height: width/3.75,
+  width: width/3.75,
+  borderRadius: width/7.5,
   backgroundColor: "rgba(255,255,255,0.2)",
   justifyContent: 'center',
   alignItems: 'center',
 },
 blueButton:{
-  padding:15,
+  padding:width/25,
   backgroundColor: '#202646',
-  borderRadius:10,
+  borderRadius:width/37.5,
   borderWidth: 1,
   borderColor: '#35b0d2',
   backgroundColor: '#35b0d2',
-  marginTop:10,
+  marginTop:width/37.5,
 },
 redButton: {
-  padding:15,
+  padding:width/25,
   backgroundColor: '#202646',
-  borderRadius:10,
+  borderRadius:width/37.5,
   borderWidth: 1,
   borderColor: 'coral',
   backgroundColor: 'coral',
-  marginTop:10,
+  marginTop:width/37.5,
 },
 overlay:{
     ...StyleSheet.absoluteFillObject,

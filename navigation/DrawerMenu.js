@@ -2,7 +2,6 @@ import React, { Component } from "react"
 import {Image, Dimensions} from 'react-native'
 import { DrawerActions, StackActions, NavigationActions} from 'react-navigation';
 import {
-  StatusBar,
   StyleSheet,
   Text,
   TouchableOpacity,
@@ -17,11 +16,11 @@ import * as firebase from 'firebase';
 const{width, height} = Dimensions.get('window')
 
 const menuData = [
-  {icon: "address-card", name:"Dashboard", screenName:"Dashboard", activeTint: "#35b0d2", key: 1},
+  {icon: "address-card", name:"Dashboard", screenName:"DashboardStack", activeTint: "#35b0d2", key: 1},
   {icon: "money", name:"Bill Split", screenName:"BillSplitStackScreen", activeTint: "#35b0d2", key: 2},
-  {icon: "users", name:"Friends", screenName:"FriendsList", activeTint: "#35b0d2", key: 3},
-  {icon: "check-circle", name:"Past Transactions", screenName:"PastTransactions", activeTint: "#35b0d2", key: 4},
-  {icon: "clock-o", name:"Current Transactions", screenName:"CurrentTransactions", activeTint: "#35b0d2", key: 5},
+  {icon: "users", name:"Friends", screenName:"FriendsStack", activeTint: "#35b0d2", key: 3},
+  {icon: "check-circle", name:"Past Transactions", screenName:"PastTransactionsStack", activeTint: "#35b0d2", key: 4},
+  {icon: "clock-o", name:"Current Transactions", screenName:"CurrentTransactionsStack", activeTint: "#35b0d2", key: 5},
   {icon: "sliders", name:"Settings", screenName:"SettingsStackScreen", activeTint: "#35b0d2", key: 6},
 ]
 
@@ -62,8 +61,8 @@ class DrawerMenu extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <View style={{marginTop: 50, height:150,backgroundColor:'white', alignItems: 'center', justifyContent: 'center'}}>
-          <Image source={require('../assets/AppIcons/Assets.xcassets/AppIcon.appiconset/1024.png')} style={{ height: 120, width: 120, borderRadius: 60 }}/>
+        <View style={{marginTop: width/7.5, height:width/2.5,backgroundColor:'white', alignItems: 'center', justifyContent: 'center'}}>
+          <Image source={require('../assets/AppIcons/Assets.xcassets/AppIcon.appiconset/1024.png')} style={{ height: width/3.125, width: width/3.125, borderRadius: width/6.25 }}/>
         </View>
         <FlatList
           data={menuData}
@@ -91,9 +90,9 @@ class DrawerMenu extends Component {
               showConfirmButton={true}
               confirmButtonStyle={{width: width/7, alignItems: 'center'}}
               cancelText="NO"
-              cancelButtonTextStyle= {{fontWeight: 'bold'}}
+              cancelButtonTextStyle= {{fontWeight: 'bold', fontSize: width/31.25}}
               confirmText="YES"
-              confirmButtonTextStyle= {{fontWeight: 'bold'}}
+              confirmButtonTextStyle= {{fontWeight: 'bold', fontSize: width/31.25}}
               confirmButtonColor='#35b0d2'
               onCancelPressed={() => {
                 this.hideAlert();
@@ -122,21 +121,21 @@ const styles = StyleSheet.create({
     flexDirection:'row'
   },
   menuItemText: {
-    fontSize:15,
+    fontSize:width/25,
     fontWeight:'300',
-    margin:15,
+    margin:width/25,
   },
   logoutContainer: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    width: 150,
+    width: width/2.5,
   },
   button: {
-    borderRadius:10,
+    borderRadius:width/37.5,
     borderWidth: 1,
-    width: 150,
-    height: 50,
+    width: width/2.5,
+    height: width/7.5,
     borderColor: '#35b0d2',
     backgroundColor: '#35b0d2',
     justifyContent: 'center',
@@ -146,7 +145,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     color: 'rgb(32,53,70)',
     color: 'white',
-    fontSize: 18,
+    fontSize: width/20.833,
   }
 })
 

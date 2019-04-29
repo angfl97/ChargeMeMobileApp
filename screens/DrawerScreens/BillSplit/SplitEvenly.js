@@ -282,9 +282,9 @@ export default class SplitEvenly extends React.Component {
 
         <View style={styles.overlay} />
 
-        <View style={{ width: width/1.2, padding:20, paddingBottom: 0}}>
+        <View style={{ width: width/1.2, padding:width/18.75, paddingBottom: 0}}>
 
-          <View style = {{flexDirection: 'row', alignItems: 'center',justifyContent: 'space-between', marginLeft: (width-(width/2.1))/2 - 20,width: width/2.1,}}>
+          <View style = {{flexDirection: 'row', alignItems: 'center',justifyContent: 'space-between', marginLeft: (width-(width/2.1))/2 - (width/18.75),width: width/2.1,}}>
 
             <TouchableOpacity style = {styles.progressButton}
               disabled = {true}
@@ -311,9 +311,9 @@ export default class SplitEvenly extends React.Component {
           </View>
 
           <View style = {{flexDirection: 'row', alignItems: 'center',marginLeft: width/5.2,width: width/1.2,}}>
-            <Text style={{marginLeft: width/28, marginRight: width/12, color: 'rgba(225,225,225,0.2)', fontSize: 15}}>Info</Text>
-            <Text style={{marginRight: width/17, color: 'white', fontSize: 15}}>Amount</Text>
-            <Text style={{color: 'rgba(225,225,225,0.2)', fontSize: 15}}>Review</Text>
+            <Text style={{marginLeft: width/28, marginRight: width/12, color: 'rgba(225,225,225,0.2)', fontSize: width/25}}>Info</Text>
+            <Text style={{marginRight: width/17, color: 'white', fontSize: width/25}}>Amount</Text>
+            <Text style={{color: 'rgba(225,225,225,0.2)', fontSize: width/25}}>Review</Text>
           </View>
         </View>
 
@@ -370,7 +370,7 @@ export default class SplitEvenly extends React.Component {
                     innerSize= {15}
                   />
                 </View>
-                <Text style={styles.btntext}> 10% </Text>
+                <Text style={styles.btntext}>  10% </Text>
                 <Text style={styles.tipText}>(${(this.state.total * 0.10).toFixed(2)})</Text>
               </View>
 
@@ -385,7 +385,7 @@ export default class SplitEvenly extends React.Component {
                     innerSize= {15}
                   />
                 </View>
-                <Text style={styles.btntext}> 18% </Text>
+                <Text style={styles.btntext}>  18% </Text>
                 <Text style={styles.tipText}>(${(this.state.total * 0.18).toFixed(2)})</Text>
               </View>
 
@@ -400,7 +400,7 @@ export default class SplitEvenly extends React.Component {
                     innerSize= {15}
                   />
                 </View>
-                <Text style={styles.btntext}> No Tip </Text>
+                <Text style={styles.btntext}>  No Tip </Text>
               </View>
 
             </View>
@@ -418,7 +418,7 @@ export default class SplitEvenly extends React.Component {
                     innerSize= {15}
                   />
                 </View>
-                <Text style={styles.btntext}> 15% </Text>
+                <Text style={styles.btntext}>  15% </Text>
                 <Text style={styles.tipText}>(${(this.state.total * 0.15).toFixed(2)})</Text>
               </View>
 
@@ -433,7 +433,7 @@ export default class SplitEvenly extends React.Component {
                     innerSize= {15}
                   />
                 </View>
-                <Text style={styles.btntext}> 20% </Text>
+                <Text style={styles.btntext}>  20% </Text>
                 <Text style={styles.tipText}>(${(this.state.total * 0.20).toFixed(2)})</Text>
               </View>
 
@@ -448,13 +448,13 @@ export default class SplitEvenly extends React.Component {
                     innerSize= {15}
                   />
                 </View>
-                <Text style={styles.btntext}> Custom: </Text>
+                <Text style={styles.btntext}>  Custom: </Text>
                 {this.showCustomField()}
               </View>
             </View>
           </View>
 
-          <View style={{marginTop: 20, width: width-40}}>
+          <View style={{marginTop: width/18.75, width: width-(width/9.375)}}>
             <ButtonComponent
               text='NEXT'
               onPress={() => this.onSubmitBillSplit()}
@@ -482,7 +482,7 @@ const styles = StyleSheet.create({
     flex:8,
   },
   flatListContainer:{
-    height: 100,
+    height: width/3.75,
   },
   friendsContainer: {
     flex:1,
@@ -493,16 +493,16 @@ const styles = StyleSheet.create({
     alignContent: 'center',
     justifyContent: 'space-between',
     width: width/1.15,
-    height: 40,
+    height: width/9.375,
     borderColor: '#35b0d2',
     backgroundColor: 'rgba(255,255,255, 0.8)',
     borderWidth: 1,
-    borderRadius: 5,
+    borderRadius: width/75,
     flexDirection: 'row',
-    marginBottom: 10,
+    marginBottom: width/37.5,
   },
   checkBoxContainer: {
-      height: 150,
+      height: width/2.5,
     justifyContent:'space-between',
   },
   customCheckBoxContainer: {
@@ -511,8 +511,8 @@ const styles = StyleSheet.create({
     justifyContent:'space-around',
   },
   circleContainer:{
-    height: 26,
-    width:26,
+    height: width/14.42,
+    width:width/14.42,
   },
   optionContainer:{
     flexDirection:'row',
@@ -529,68 +529,68 @@ const styles = StyleSheet.create({
   infoContainer: {
     flex: 2,
     width: width,
-    padding:20,
+    padding:width/18.75,
   },
   receiptScannerContainer: {
     width: width/2,
     justifyContent: 'flex-end'
   },
   input: {
-    height:40,
+    height:width/9.375,
     backgroundColor: 'rgba(255,255,255,1)',
     color:'rgba(0,0,0,0.5)',
-    marginBottom: 5,
-    paddingHorizontal:10,
+    marginBottom: width/75,
+    paddingHorizontal:width/37.5,
     borderWidth: 2,
-    borderRadius: 20,
+    borderRadius: width/18.75,
   },
   customContainer: {
     width: width / 4,
   },
   inputTitle: {
     color: 'white',
-    fontSize: 20,
+    fontSize: width/18.75,
     fontWeight: 'bold',
-    marginBottom: 5,
-    marginTop: 20,
+    marginBottom: width/75,
+    marginTop: width/18.75,
     textAlign: 'left',
   },
   tipText:{
     color: 'white',
-    fontSize: 15,
+    fontSize: width/25,
     opacity: 0.8,
   },
   btntext: {
     color: 'white',
-    fontSize: 18,
+    fontSize: width/20.83,
   },
   redbtntext: {
     color: 'white',
-    fontSize: 13,
+    fontSize: width/28.85,
     textAlign: 'center'
   },
   redButton: {
-    padding: 8,
+    padding: width/46.88,
     flex: 1,
   	backgroundColor: '#202646',
-    borderRadius:10,
+    borderRadius:width/37.5,
     borderWidth: 1,
     borderColor: 'coral',
     backgroundColor: 'coral',
 	},
   receiptScannerContainer: {
-    marginTop: 10,
+    marginTop: width/37.5,
     width: width/2.5,
-    height: 35,
+    height: width/10.7,
     flex: 1,
     justifyContent: 'flex-end'
   },
   progressButton: {
     margin: 0,
     justifyContent: 'center',
-    width: 40,
-    height: 40,
-    borderRadius: 100,
+    width: width/9.375,
+    height: width/9.375,
+    borderRadius: width/3.75,
     backgroundColor: '#35b0d2',
   },
   line: {
@@ -601,6 +601,6 @@ const styles = StyleSheet.create({
   stepLabel: {
     color: 'white',
     textAlign: 'center',
-    fontSize: 16
+    fontSize: width/23.4
   }
 });

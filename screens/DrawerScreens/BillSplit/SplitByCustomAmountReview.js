@@ -149,7 +149,7 @@ export default class SplitByCustomAmountReview extends React.Component{
       <Icon
         name='check-circle'
         color= 'green'
-        size= {60}
+        size= {width/6.25}
         onChangeText={text => this.setState({ text })}
       />
     </View>
@@ -180,9 +180,9 @@ export default class SplitByCustomAmountReview extends React.Component{
         <ImageBackground source={require('../../../assets/group-dinner.jpg')} style={styles.imageContainer}>
           <View style={styles.overlay} />
 
-          <View style={{ width: width/1.2, padding:20, paddingBottom: 0}}>
+          <View style={{ width: width/1.2, padding:width/18.75, paddingBottom: 0}}>
 
-            <View style = {{flexDirection: 'row', alignItems: 'center',justifyContent: 'space-between', marginLeft: (width-(width/2.1))/2 - 20,width: width/2.1,}}>
+            <View style = {{flexDirection: 'row', alignItems: 'center',justifyContent: 'space-between', marginLeft: (width-(width/2.1))/2 - (width/18.75),width: width/2.1,}}>
 
               <TouchableOpacity style = {styles.progressButton}
                 disabled = {true}
@@ -209,9 +209,9 @@ export default class SplitByCustomAmountReview extends React.Component{
             </View>
 
             <View style = {{flexDirection: 'row', alignItems: 'center',marginLeft: width/5.2,width: width/1.2,}}>
-              <Text style={{marginLeft: width/28, marginRight: width/12, color: 'rgba(225,225,225,0.2)', fontSize: 15}}>Info</Text>
-              <Text style={{marginRight: width/17, color: 'rgba(225,225,225,0.2)', fontSize: 15}}>Amount</Text>
-              <Text style={{color: 'white', fontSize: 15}}>Review</Text>
+              <Text style={{marginLeft: width/28, marginRight: width/12, color: 'rgba(225,225,225,0.2)', fontSize: width/25}}>Info</Text>
+              <Text style={{marginRight: width/17, color: 'rgba(225,225,225,0.2)', fontSize: width/25}}>Amount</Text>
+              <Text style={{color: 'white', fontSize: width/25}}>Review</Text>
             </View>
           </View>
 
@@ -221,7 +221,7 @@ export default class SplitByCustomAmountReview extends React.Component{
               <View style={styles.infoContainer}>
 
               <DatePicker
-                  style={{width: width/2.3, height: 30, marginBottom:20, padding: 0}}
+                  style={{width: width/2.3, height: width/12.5, marginBottom:width/18.75, padding: 0}}
                   showIcon = {true }
                   date={this.state.date}
                   mode="date"
@@ -241,8 +241,8 @@ export default class SplitByCustomAmountReview extends React.Component{
                       marginLeft: width/6.7,
                       borderColor: 'rgba(255,255,255,1)',
                       borderWidth: 2,
-                      borderRadius: 5,
-                      height: 30,
+                      borderRadius: width/75,
+                      height: width/12.5,
                       width: width/3.5
                     },
                     dateText: {
@@ -259,15 +259,15 @@ export default class SplitByCustomAmountReview extends React.Component{
                 <Text style={styles.errorMessage}>{pickDate}</Text>
 
 
-                <Text style={[styles.sectionTitle, {marginTop: 7}]}>Who's Paying What:</Text>
+                <Text style={[styles.sectionTitle, {marginTop: width/53.57}]}>Who's Paying What:</Text>
 
                 <FlatList
                   data={amountsFlat}
                   extraData={this.state}
                   renderItem={({item}) =>
                     <View style={styles.searchboxContainer}>
-                      <Text style={{marginLeft: 25,marginTop: 9,color: 'white', fontWeight: 'bold',fontSize: 15, textAlign: 'center'}}>{item.name}</Text>
-                      <Text style={{marginRight: 25,marginTop: 9,color: 'white', fontWeight: 'bold',fontSize: 15, textAlign: 'center'}}>${item.amount}</Text>
+                      <Text style={{marginLeft: width/15,marginTop: width/41.7,color: 'white', fontWeight: 'bold',fontSize: width/25, textAlign: 'center'}}>{item.name}</Text>
+                      <Text style={{marginRight: width/15,marginTop: width/41.7,color: 'white', fontWeight: 'bold',fontSize: width/25, textAlign: 'center'}}>${item.amount}</Text>
                     </View>
                   }
                   keyExtractor={item => item.id}
@@ -297,9 +297,9 @@ export default class SplitByCustomAmountReview extends React.Component{
               showConfirmButton={true}
               confirmButtonStyle={{width: width/7, alignItems: 'center'}}
               cancelText="NO"
-              cancelButtonTextStyle= {{fontWeight: 'bold'}}
+              cancelButtonTextStyle= {{fontWeight: 'bold', fontSize: width/31.25}}
               confirmText="YES"
-              confirmButtonTextStyle= {{fontWeight: 'bold'}}
+              confirmButtonTextStyle= {{fontWeight: 'bold', fontSize: width/31.25}}
               confirmButtonColor='#35b0d2'
               onCancelPressed={() => {
                 this.hideOptionAlert();
@@ -344,12 +344,12 @@ const styles = StyleSheet.create({
   },
   infoContainer: {
     flex: 1,
-    padding: 20
+    padding: width/18.75
   },
   borderContainer: {
     borderColor: '#35b0d2',
     borderWidth: 2,
-    margin: 20,
+    margin: width/18.75,
   },
   contentContainer: {
     width: width,
@@ -358,41 +358,41 @@ const styles = StyleSheet.create({
     flex: 1,
     alignContent: 'center',
     justifyContent: 'space-between',
-    height: 40,
+    height: width/9.375,
     borderColor: '#35b0d2',
     backgroundColor: '#35b0d2',
     borderWidth: 2,
-    borderRadius: 5,
+    borderRadius: width/75,
     flexDirection: 'row',
-    marginBottom: 10,
+    marginBottom: width/37.5,
   },
   valueContainer: {
     alignContent: 'center',
     justifyContent: 'center',
-    height: 30,
+    height: width/12.5,
     borderColor: 'white',
     backgroundColor: 'rgba(255,255,255,1)',
     borderWidth: 2,
-    borderRadius: 5,
+    borderRadius: width/75,
     width: width/3.5,
   },
   buttonContainer: {
-    marginLeft: 20,
-    marginRight: 20,
+    marginLeft: width/18.75,
+    marginRight: width/18.75,
   },
   pageTitle: {
     textAlign: 'center',
     color: 'white',
-    fontSize: 24,
+    fontSize: width/15.625,
     fontWeight: 'bold',
-    marginTop: 30,
+    marginTop: width/12.5,
   },
   sectionTitle: {
     textAlign: 'left',
     color: 'white',
-    fontSize: 18,
+    fontSize: width/20.83,
     fontWeight: 'bold',
-    marginBottom: 10,
+    marginBottom: width/37.5,
 
   },
   customView: {
@@ -404,9 +404,9 @@ const styles = StyleSheet.create({
   progressButton: {
     margin: 0,
     justifyContent: 'center',
-    width: 40,
-    height: 40,
-    borderRadius: 100,
+    width: width/9.375,
+    height: width/9.375,
+    borderRadius: width/3.75,
     backgroundColor: '#35b0d2',
   },
   line: {
@@ -417,10 +417,10 @@ const styles = StyleSheet.create({
   stepLabel: {
     color: 'white',
     textAlign: 'center',
-    fontSize: 16
+    fontSize: width/23.4375
   },
   errorMessage:{
     color: 'red',
-    marginBottom: 5
+    marginBottom: width/75
   },
 });
