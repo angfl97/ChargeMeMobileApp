@@ -9,9 +9,12 @@ import {
   ScrollView,
   Linking,
   SafeAreaView,
-  ImageBackground
+  ImageBackground,
+  Dimensions
 } from 'react-native';
 import {Header,Left,Icon} from 'native-base'
+
+const {width} = Dimensions.get('window')
 
 export default class SettingsScreen extends React.Component {
 
@@ -35,56 +38,42 @@ export default class SettingsScreen extends React.Component {
 
             <Text style={styles.heading}> PREFERENCES </Text>
             <TouchableOpacity style={styles.button} onPress={() => this.props.navigation.navigate('UserProfile')}>
-              <Text>
                 <Text style={styles.btntext}>EDIT PROFILE </Text>
                 <Icon name="angle-right" type="FontAwesome" style={styles.icon}/>
-              </Text>
             </TouchableOpacity>
 
             <TouchableOpacity style={styles.button} onPress={() => this.props.navigation.navigate('PaymentMethods')}>
-              <Text>
                 <Text style={styles.btntext}>PAYMENT METHODS </Text>
                 <Icon name="angle-right" type="FontAwesome" style={styles.icon}/>
-              </Text>
             </TouchableOpacity>
 
             <TouchableOpacity style={styles.button} onPress={() => this.props.navigation.navigate('NotificationSettings')}>
-              <Text>
                 <Text style={styles.btntext}>NOTIFICATIONS </Text>
                 <Icon name="angle-right" type="FontAwesome" style={styles.icon}/>
-              </Text>
             </TouchableOpacity>
 
 
             <Text style={styles.heading}> SECURITY </Text>
             <TouchableOpacity style={styles.button} onPress={() => this.props.navigation.navigate('ChangePassword')}>
-              <Text>
                 <Text style={styles.btntext}>CHANGE PASSWORD </Text>
                 <Icon name="angle-right" type="FontAwesome" style={styles.icon}/>
-              </Text>
             </TouchableOpacity>
 
 
             <Text style={styles.heading}> INFORMATION </Text>
             <TouchableOpacity style={styles.button} onPress={() => this.props.navigation.navigate('UserManual')}>
-              <Text>
                 <Text style={styles.btntext}>USER MANUAL </Text>
                 <Icon name="angle-right" type="FontAwesome" style={styles.icon}/>
-              </Text>
             </TouchableOpacity>
 
             <TouchableOpacity style={styles.button} onPress={() => this.props.navigation.navigate('DeveloperGuide')}>
-              <Text>
                 <Text style={styles.btntext}>DEVELOPER GUIDE </Text>
                 <Icon name="angle-right" type="FontAwesome" style={styles.icon}/>
-              </Text>
             </TouchableOpacity>
 
             <TouchableOpacity style={styles.button} onPress={() => this.props.navigation.navigate('FAQs')}>
-              <Text>
                 <Text style={styles.btntext}>FAQS </Text>
                 <Icon name="angle-right" type="FontAwesome" style={styles.icon}/>
-              </Text>
             </TouchableOpacity>
 
 
@@ -109,43 +98,44 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   heading:{
-    fontSize:22,
+    fontSize:width/17,
     fontWeight: 'bold',
     color: "white",
-    paddingTop: 20,
-    paddingBottom: 10,
-    paddingLeft: 10,
+    paddingTop: width/18.75,
+    paddingBottom: width/37.5,
+    paddingLeft: width/37.5,
   },
   textinput: {
     alignSelf: 'stretch',
     alignItems: 'center',
-    height: 40,
-    marginBottom: 30,
+    height: width/9.375,
+    marginBottom: width/12.5,
     color: "#000",
   },
   button: {
-    alignSelf: 'stretch',
-    padding: 20,
+    flexDirection: 'row',
+    alignContent: 'center',
+    justifyContent: 'space-between',
+    padding: width/18.75,
     backgroundColor: 'rgba(255,255,255,0.2)',
     width: '100%',
-    alignSelf: 'center',
-    marginTop: 10,
+    marginTop: width/37.5,
   },
   btntext:{
-    fontSize: 20,
+    fontSize: width/18.75,
     color: 'white',
   },
   icon:{
-    fontSize:28,
+    fontSize:width/13.39,
     color: 'white',
   },
   hyperlink:{
     color: '#34c6de',
-    fontSize: 20,
+    fontSize: width/18.75,
     textAlign:'left',
-    marginBottom: 20,
-    marginLeft: 20,
-    marginRight: 20
+    marginBottom: width/18.75,
+    marginLeft: width/18.75,
+    marginRight: width/18.75,
   },
   overlay: {
       ...StyleSheet.absoluteFillObject,

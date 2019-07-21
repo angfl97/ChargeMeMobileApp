@@ -93,6 +93,7 @@ export default class SplitEvenly extends React.Component {
           }
     }
   }
+  
   on15Toggle = (checked15) => {
     this.setState(() => ({checked15}));
     if(checked15==true){
@@ -538,7 +539,7 @@ const styles = StyleSheet.create({
   input: {
     height:width/9.375,
     backgroundColor: 'rgba(255,255,255,1)',
-    color:'rgba(0,0,0,0.5)',
+    color:'rgba(0,0,0,0.8)',
     marginBottom: width/75,
     paddingHorizontal:width/37.5,
     borderWidth: 2,

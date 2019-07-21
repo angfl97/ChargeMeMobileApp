@@ -35,8 +35,6 @@ $ npm i react-native-ui-stepper
 $ npm install react-native-datepicker --save
 $ npm install --save react-native-modal
 
-$ npm install --save react-native-push-notification
-$ react-native link react-native-push-notification
 ```
 5. Fix errors within react-native-vector-icons
 ```
@@ -47,10 +45,10 @@ $ npm install react-native-vector-icons --save
 
 #### Emulate in Xcode iOS simulator
 i.
-   - right click the Xcode icon
-  - hover over "Open Developer Tool"
-  - left click "Simulator"
-  - allow iOS simulator to boot up
+- right click the Xcode icon
+- hover over "Open Developer Tool"
+- left click "Simulator"
+- allow iOS simulator to boot up
 
 ii. cd into the project directory and run the following command in the folder:
 ```
@@ -78,6 +76,73 @@ iv. Scan QR code through QR code scanner or iOS camera
 
 v. Open application through Expo Client
 
+## Detaching to ExpoKit
+The following steps are for converting a pure-JS Expo project (such as one created from XDE) into a native iOS and Android project which depends on ExpoKit.
+
+After you detach, all your JS files will stay the same, but we'll additionally create ios and android directories in your project folder. These will contain Xcode and Android Studio projects respectively, and they'll have dependencies on React Native and on Expo's core SDK.
+
+You'll still be able to develop and test your project from XDE, and you'll still be able to publish your Expo JS code the same way. However, if you add native dependencies that aren't included in Expo, other users won't be able to run those features of your app with the main Expo app. You'll need to distribute the native project yourself.
+
+1. Install exp
+if you don't have it, run `npm install -g exp` to get our command line library.
+If you haven't used exp or XDE before, the first thing you'll need to do is log in with your Expo account using `exp login`
+
+2. Make sure you have the necessary keys in app.json
+
+3. Detach
+From your project directory, run `exp detach`. This will download the required dependencies and build native projects under the ios and android directories.
+
+You will be asked to name the builds for iOS and Android and that can be whatever you want. If there are problems with this step, delete the repository, reinstall the dependencies and try again
+
+4. Set up and Run your native project
+Congrats, you now have a native project with ExpoKit! Follow the directions under Developing with ExpoKit to get things set up and running.
+
+5. Make native changes
+ou can do whatever you want in the Xcode and Android Studio projects.
+To add third-party native modules for React Native, non-Expo-specific instructions such as `react-native link` should be supported.
+
+## Installing CocoaPods
+### What is CocoaPods?
+CocoaPods is a dependency manager for Swift and Objective-C Cocoa projects. It has over 61 thousand libraries and is used in over 3 million apps. CocoaPods can help you scale your projects elegantly
+CocoaPods is built with Ruby and is installable with the default Ruby available on macOS. We recommend you use the default ruby.
+Using the default Ruby install can require you to use `sudo` when installing gems.
+
+1. First open your terminal and type
+`sudo gem install cocoapods -v 1.5.3`
+
+Gem will get installed in Ruby inside System library:
+2. Then update your gem file with command
+`$ sudo gem install -n /usr/local/bin cocoapods`
+
+3. Then give your project path
+`$ cd /your project path`
+
+4. Touch the podfile
+`$ touch podfile`
+
+5. Open the podfile
+`$ open -e podfile`
+
+6. Copy and paste the Podfile in this repository into your new podfile and save
+
+7. After installation, there will be a lot of messages, read them and if no error found, it means cocoapods installation is done. Next, you need to setup the cocoapods master repo. Type in terminal
+`$ pod setup`
+
+8. Install pods into your project
+`$ pod install`
+
+### Opening the workspace (iOS)
+1. direct to the ios folder in the project repository
+
+2. open the file `chargeme.xcworkspace`
+
+3. Build the project in iOS
+It will take several minutes because the first time build is very bulky
+
+4. Go to terminal
+`$ expo start`
+the simulator cannot open without the expo tunnel open, so you must launch the tunnel through expo for the simulator to build the mobile application
+
 ## Troubleshooting
 ### Error Running (OSX):
 ```
@@ -90,3 +155,32 @@ $ expo start
 Go to:
 > Settings -> Security & Privacy -> Privacy -> Automation -> Privacy tab
 check the "System Events" checkbox
+
+## Installing native dependencies
+
+Now that you have detached you have access to native dependencies. However this means there will be an extra step when downloading new NPM libraries. Two such libraries are `rn-fetch-blob` and `react-native-camera-roll-picker`. To install them run the following commands:
+
+```
+$ npm install --save rn-fetch-blob
+```
+Go into your ios directory and add the following lines to your podfile
+```
+pod 'rn-fetch-blob',
+    :path => '../node_modules/rn-fetch-blob'
+ ```
+Now save the podfile and run the following commands
+```
+$ react-native link
+$ cd ios
+$ pod install
+```
+
+At this point, it is advisable to clean your Xcode project build using `Command-Option-Shift-K`. If your build finishes without errors, continue with the following commands:
+```
+$ npm install react-native-camera-roll-picker --save
+$ react-native link
+$ cd ios
+$ pod install
+```
+
+Once again, clean your Xcode project using `Command-Option-Shift-K` and ensure your project builds without error

@@ -19,8 +19,8 @@ const menuData = [
   {icon: "address-card", name:"Dashboard", screenName:"DashboardStack", activeTint: "#35b0d2", key: 1},
   {icon: "money", name:"Bill Split", screenName:"BillSplitStackScreen", activeTint: "#35b0d2", key: 2},
   {icon: "users", name:"Friends", screenName:"FriendsStack", activeTint: "#35b0d2", key: 3},
-  {icon: "check-circle", name:"Past Transactions", screenName:"PastTransactionsStack", activeTint: "#35b0d2", key: 4},
-  {icon: "clock-o", name:"Current Transactions", screenName:"CurrentTransactionsStack", activeTint: "#35b0d2", key: 5},
+  {icon: "clock-o", name:"Current Transactions", screenName:"CurrentTransactionsStack", activeTint: "#35b0d2", key: 4},
+  {icon: "check-circle", name:"Past Transactions", screenName:"PastTransactionsStack", activeTint: "#35b0d2", key: 5},
   {icon: "sliders", name:"Settings", screenName:"SettingsStackScreen", activeTint: "#35b0d2", key: 6},
 ]
 
@@ -64,6 +64,7 @@ class DrawerMenu extends Component {
         <View style={{marginTop: width/7.5, height:width/2.5,backgroundColor:'white', alignItems: 'center', justifyContent: 'center'}}>
           <Image source={require('../assets/AppIcons/Assets.xcassets/AppIcon.appiconset/1024.png')} style={{ height: width/3.125, width: width/3.125, borderRadius: width/6.25 }}/>
         </View>
+
         <FlatList
           data={menuData}
           renderItem={({item}) => <DrawerItem navigation={this.props.navigation} screenName={item.screenName} icon={item.icon} name={item.name} key={item.key} />}
@@ -110,7 +111,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor:'rgba(255,255,255,0.43)',
-    alignItems: 'center',
 
   },
   alertContainer: {
@@ -129,7 +129,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    width: width/2.5,
+    width: width/1.5,
   },
   button: {
     borderRadius:width/37.5,

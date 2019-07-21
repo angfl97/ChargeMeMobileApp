@@ -18,7 +18,8 @@ import {
   TouchableHighlight,
   Keyboard
 } from "react-native";
-import { Header, Left, Right, Icon, ListItem, List } from "native-base";
+import { Header, Left, Right, Icon, List } from "native-base";
+import { ListItem } from 'react-native-elements';
 const { width, height } = Dimensions.get("window");
 import * as firebase from "firebase";
 import AwesomeAlert from 'react-native-awesome-alerts';
@@ -30,6 +31,10 @@ import ButtonComponent from '../../components/ButtonComponent'
 let currentFriends = []
 let possibleFriends = []
 let tempArray = []
+let userFirstName=''
+let userLastName=''
+let userUsername=''
+let userProfilePic=''
 
 export default class FriendsList extends React.Component {
   constructor(props) {
@@ -40,33 +45,35 @@ export default class FriendsList extends React.Component {
     tempArray = []
   }
 
-//function called to save changes when use navigates away from screen
-  componentWillUnmount() {
-    var uid = firebase.auth().currentUser.uid;
-
-    //clear out user's current friends
-    firebase
-      .database()
-      .ref("friendslist/" + uid + "/currentFriends")
-      .set(" ");
-
-    //write in each current friend
-    for (let i = 0; i < currentFriends.length; i++){
-      firebase
-        .database()
-        .ref("friendslist/" + uid + "/currentFriends/"+ currentFriends[i].key)
-        .set({
-                firstName: currentFriends[i].firstName,
-                lastName: currentFriends[i].lastName,
-                username: currentFriends[i].username
-              });
-    }
-  }
 
   //function to add friend to current friends
   addFriend = item => {
     index = eval(JSON.stringify(item.id))
     item.name = ""
+
+    var uid = firebase.auth().currentUser.uid;
+    //add new friend to current user's friendlist
+    firebase
+      .database()
+      .ref("friendslist/" + uid + "/currentFriends/" + possibleFriends[index].key)
+      .set({
+              firstName: possibleFriends[index].firstName,
+              lastName: possibleFriends[index].lastName,
+              username: possibleFriends[index].username,
+              profilePic: possibleFriends[index].profilePic
+      });
+
+    //add current user to new friend's friendlist
+    firebase
+      .database()
+      .ref("friendslist/" + possibleFriends[index].key + "/currentFriends/" + uid)
+      .set({
+              firstName: userFirstName,
+              lastName: userLastName,
+              username: userUsername,
+              profilePic: userProfilePic
+      });
+
     // And put friend in currentFriends
     currentFriends.push(possibleFriends[index]);
 
@@ -78,8 +85,22 @@ export default class FriendsList extends React.Component {
 
   //function to remove friend from current friends
   removeFriend = index => {
+    console.log(currentFriends)
     // And put friend in possibleFriends
     possibleFriends.push(currentFriends[index]);
+
+    var uid = firebase.auth().currentUser.uid;
+    //clear out removed friend from  current user's friendslist
+    firebase
+      .database()
+      .ref("friendslist/" + uid + "/currentFriends/" + currentFriends[index].key)
+      .remove();
+
+    //clear out current user friend from removed friend's friendslist
+    firebase
+      .database()
+      .ref("friendslist/" + currentFriends[index].key + "/currentFriends/" + uid)
+      .remove();
 
     // Pull friend out of currentFriends
     currentFriends.splice(index, 1);
@@ -91,6 +112,15 @@ export default class FriendsList extends React.Component {
   componentDidMount() {
     // get current user's uid
     var uid = firebase.auth().currentUser.uid;
+
+    // gets user data
+    firebase.database().ref('users/'+uid).once("value", snapshot => {
+      userFirstName = snapshot.val().firstName;
+      userLastName = snapshot.val().lastName;
+      userUsername = snapshot.val().username;
+      userProfilePic = snapshot.val().profilePic;
+
+    });
 
     // load their current friends
     firebase
@@ -108,8 +138,9 @@ export default class FriendsList extends React.Component {
                               firstName: childSnapShot.val().firstName,
                               lastName: childSnapShot.val().lastName,
                               username: childSnapShot.val().username,
+                              profilePic: childSnapShot.val().profilePic,
                             })
-
+                            console.log('curr: ', childSnapShot)
         });
 
       })
@@ -130,6 +161,7 @@ export default class FriendsList extends React.Component {
                                 firstName: childSnapShot.val().firstName,
                                 lastName: childSnapShot.val().lastName,
                                 username: childSnapShot.val().username,
+                                profilePic: childSnapShot.val().profilePic,
                               })
 
           });
@@ -154,6 +186,7 @@ export default class FriendsList extends React.Component {
       var name = possibleFriends[x].firstName + " " + possibleFriends[x].lastName
       tempArray[x] = { id: x, name: name };
     }
+
 
     return (
       <SafeAreaView style={styles.container}>
@@ -203,29 +236,34 @@ export default class FriendsList extends React.Component {
           />
 
             <Text style={styles.title}> My Friends</Text>
-            <KeyboardAwareScrollView contentContainerStyle = {{width: width- (width/9.375),height: height/2}}>
+            <KeyboardAwareScrollView contentContainerStyle = {{width: width,height: height/2}}>
               <View style={styles.container}>
 
                 {currentFriends.map((friend, index) => (
-                  <ListItem style={styles.listContainer}>
-                    <Left>
-                      <Text style={[styles.btntext,{fontWeight: 'bold'}]} key={friend.username}>
-                        {" "}
-                        {`${friend.firstName + ' ' + friend.lastName}`}{" "}
-                      </Text>
-                    </Left>
-                    <Right>
-                      <View style={styles.removeBtn}>
-                        <TouchableOpacity
-                          style={styles.btntext}
-                          onPress={() => this.removeFriend(index)}
-                          key={friend.username}
-                        >
-                          <Text style={styles.btntext}>Remove</Text>
-                        </TouchableOpacity>
-                      </View>
-                    </Right>
-                  </ListItem>
+                  <ListItem
+                    containerStyle={styles.listContainer}
+                    key={index}
+                    leftAvatar= {{
+                                  size: width/7.5,
+                                  source: {uri: friend.profilePic ? friend.profilePic : 'https://pngimage.net/wp-content/uploads/2018/05/default-user-profile-image-png-2.png'},
+                                  rounded: true
+                                }}
+                    title={friend.firstName + ' ' + friend.lastName}
+                    titleStyle = {styles.titleText}
+                    subtitle = {'@' + friend.username}
+                    subtitleStyle= {styles.subtitleText}
+                    rightElement = {
+                                      <View style={styles.removeBtn}>
+                                        <TouchableOpacity
+                                          onPress={() => this.removeFriend(index)}
+                                        >
+                                          <Text style={styles.btnText}>Remove</Text>
+                                        </TouchableOpacity>
+                                      </View>
+                                    }
+                    bottomDivider = {true}
+                    topDivider = {true}
+                  />
                 ))}
               </View>
             </KeyboardAwareScrollView>
@@ -252,23 +290,18 @@ const styles = StyleSheet.create({
     backgroundColor: "rgba(69,85,117,0.7)"
   },
   listContainer: {
-    position: "relative",
     justifyContent: "center",
     alignItems: "center",
-    width: width-(width/9.375)
+    width: width,
+    backgroundColor: 'transparent'
   },
   infoContainer: {
     flex: 1,
     width: width,
-    padding:width/18.75,
     paddingBottom: 0,
+    paddingTop: width/9.375,
     alignItems: 'center',
     justifyContent: 'center'
-  },
-  buttonContainer: {
-    width: width/2,
-    flex: 1,
-    marginTop: width/75,
   },
   input: {
     height: width/9.375,
@@ -281,8 +314,18 @@ const styles = StyleSheet.create({
     right: width/37.5,
     height: width/25
   },
-  btntext: {
+  titleText: {
     color: 'white',
+    fontSize: width/18.75,
+    fontWeight : 'bold'
+  },
+  subtitleText: {
+    color: 'rgba(225,225,225,0.8)',
+    fontSize: width/23.4
+  },
+  btnText: {
+    color: 'white',
+    fontSize: width/28.8
   },
   title:{
     fontWeight: 'bold',

@@ -230,6 +230,11 @@ export default class SplitByItem extends React.Component {
     this.setState({itemName: value})
   }
 
+  _onItemNameSubmitted = () => {
+    const el = this.itemPriceField.getElement()
+    el.focus()
+  }
+
   //update item price entered by user
   checkItemPrice = value => {
     itemPriceEmpty = false;
@@ -472,6 +477,7 @@ export default class SplitByItem extends React.Component {
                     placeholder="Item Name"
                     placeholderTextColor="white"
                     onChangeText= {(value) => this.checkItemName(value)}
+                    onSubmitEditing={() => { this._onItemNameSubmitted() }}
                     returnKeyType='next'
                     defaultValue={this.state.itemName}
                   />

@@ -1,7 +1,12 @@
 node_modules/**/*
+ios/**/*
+android/**/*
+temp-android-directory/**/*
 .expo/*
 npm-debug.*
 *.jks
 *.p12
 *.key
 *.mobileprovision
+*.DS_Store
+/package-lock.json

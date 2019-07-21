@@ -14,8 +14,10 @@ import {
   TouchableOpacity,
   Keyboard
 } from 'react-native';
+import { Icon } from 'react-native-elements';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 import * as firebase from 'firebase';
+import AwesomeAlert from 'react-native-awesome-alerts'
 import ButtonComponent from '../../../../components/ButtonComponent'
 import TextInputComponent from '../../../../components/TextInputComponent'
 
@@ -26,6 +28,7 @@ let currentMessage = '';
 let confirmEmpty = false;
 let newEmpty = false;
 let currentEmpty = false;
+let showAlert = false;
 
 export default class ChangePassword extends React.Component {
   constructor(props){
@@ -36,6 +39,33 @@ export default class ChangePassword extends React.Component {
       confirmPassword: '',
       disable : true};
   }
+
+  componentDidMount(){
+    confirmMessage = '';
+    newMessage = '';
+    currentMessage = '';
+    confirmEmpty = false;
+    newEmpty = false;
+    currentEmpty = false;
+    this.hideAlert()
+
+  }
+
+  hideAlert = () => {
+    showAlert = false;
+    this.forceUpdate();
+  };
+
+  renderCustomAlertView = () => (
+    <View style={styles.customView}>
+      <Icon
+        name='check-circle'
+        color= 'green'
+        size= {width/6.25}
+        onChangeText={text => this.setState({ text })}
+      />
+    </View>
+  );
 
   //on every keystroke in the newPassword, call this function
   checkNewPassword(text){
@@ -163,9 +193,14 @@ export default class ChangePassword extends React.Component {
           //if user successfully reauthenticated, update password
           user.updatePassword(this.state.newPassword)
           .then(() => {
-              //if password successfully updated
-              //send back to loading page
-              this.props.navigation.navigate('HomeScreen');
+
+              //show confirmation alert
+              showAlert = true;
+              this.forceUpdate()
+
+              //delay one second to allow user to see confirmation alert before sending back to login page
+              var delayInMilliseconds = 1000; //1 second
+              setTimeout(() => {this.props.navigation.navigate('Auth');}, delayInMilliseconds);
           })
           .catch((error) => {console.log(error); });
       })
@@ -203,7 +238,9 @@ export default class ChangePassword extends React.Component {
             <TextInputComponent
               empty={currentEmpty}
               error={currentMessage}
+              style={styles.input}
               placeholder="********"
+              placeholderTextColor="rgba(1,1,1,0.6)"
               onChangeText={(text) => this.checkCurrentPassword(text)}
               returnKeyType='next'
               inputRef = {(input) => {this.current = input}}
@@ -217,7 +254,9 @@ export default class ChangePassword extends React.Component {
             <TextInputComponent
               empty={newEmpty}
               error={newMessage}
+              style={styles.input}
               placeholder="********"
+              placeholderTextColor="rgba(1,1,1,0.6)"
               onChangeText={(text) => this.checkNewPassword(text)}
               returnKeyType='next'
               inputRef= {(input) => {this.new = input}}
@@ -231,7 +270,9 @@ export default class ChangePassword extends React.Component {
             <TextInputComponent
               empty={confirmEmpty}
               error={confirmMessage}
+              style={styles.input}
               placeholder="********"
+              placeholderTextColor="rgba(1,1,1,0.6)"
               onChangeText={(text) =>this.checkConfirmPassword(text)}
               returnKeyType='go'
               inputRef = {(input) => {this.confirm = input}}
@@ -250,6 +291,12 @@ export default class ChangePassword extends React.Component {
             </View>
 
             </KeyboardAwareScrollView>
+            <AwesomeAlert
+                show={showAlert}
+                customView={this.renderCustomAlertView()}
+                closeOnTouchOutside={false}
+                closeOnHardwareBackPress={false}
+              />
           </ImageBackground>
       </SafeAreaView>
     );
@@ -276,26 +323,35 @@ const styles = StyleSheet.create({
   },
   titleContainer:{
     justifyContent: 'center',
-    padding: 20,
+    padding: width/18.75,
     flex: 1,
     width: width,
   },
   infoContainer: {
     flex: 3,
     width: width,
-    padding:20,
+    padding:width/18.75,
   },
   title:{
     fontWeight: 'bold',
     color: '#fff',
-    fontSize: 20,
+    fontSize: width/18.75,
     textAlign:'left',
+  },
+  input: {
+    height:width/9.375,
+    backgroundColor: 'rgba(255,255,255,1)',
+    color:'rgba(1,1,1,0.6)',
+    marginBottom: width/75,
+    paddingHorizontal:width/37.5,
+    borderWidth: 2,
+    borderRadius: width/18.75,
   },
   inputTitle: {
     color: 'white',
-    fontSize: 20,
+    fontSize: width/18.75,
     fontWeight: 'bold',
-    marginBottom: 5,
-    marginTop: 10,
+    marginBottom: width/75,
+    marginTop: width/37.5,
   },
 });
